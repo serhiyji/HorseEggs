@@ -1,4 +1,26 @@
+using HorseEggs.Core;
+using HorseEggs.Infrastructure;
+
+using HorseEggs.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Create connection string
+string connStr = builder.Configuration.GetConnectionString("DefaultConnection");
+// Database context
+builder.Services.AddDbContext(connStr);
+
+// Add core services
+builder.Services.AddCoreServices();
+
+// Add Infrastructure services
+builder.Services.AddInfrastructureServices();
+
+// Add maping
+builder.Services.AddMapping();
+
+// Add repositories
+builder.Services.AddRepositories();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -18,7 +40,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStatusCodePagesWithRedirects("/Error/{0}");
 
 app.MapControllerRoute(
     name: "default",
