@@ -14,5 +14,7 @@ namespace HorseEggs.Core.Entities
         public string Name { get; set; }
         public IEnumerable<Competence> Competences { get; set; }
         public IEnumerable<EducationalProgram> EducationalPrograms { get; set;}
+        public IEnumerable<ProgramLearningOutcomes> ProgramLearningOutcomess { get; set;}
+        public IEnumerable<StandartEducationalProgram> StandartEducationalPrograms { get; set;}
     }
 }

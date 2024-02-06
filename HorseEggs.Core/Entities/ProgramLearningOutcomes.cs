@@ -19,5 +19,7 @@ namespace HorseEggs.Core.Entities
         public Specialty? Specialty { get; set; }
         public IEnumerable<Discipline_ProgramLearningOutcomes_EP> Discipline_ProgramLearningOutcomes_EPs { get; set; }
         public IEnumerable<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

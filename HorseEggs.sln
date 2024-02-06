@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorseEggs.Core", "HorseEggs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorseEggs.Infrastructure", "HorseEggs.Infrastructure\HorseEggs.Infrastructure.csproj", "{8895AEE3-8D49-4968-9C80-59538B72D386}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorseEggs.Web", "HorseEggs.Web\HorseEggs.Web.csproj", "{EA55F957-87A6-4F65-BB76-0B44A90196A1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseEggs.Api", "HorseEggs.Api\HorseEggs.Api.csproj", "{560BDCC4-F843-429A-8C92-62F1EACC4A5D}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{8895AEE3-8D49-4968-9C80-59538B72D386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8895AEE3-8D49-4968-9C80-59538B72D386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8895AEE3-8D49-4968-9C80-59538B72D386}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA55F957-87A6-4F65-BB76-0B44A90196A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA55F957-87A6-4F65-BB76-0B44A90196A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA55F957-87A6-4F65-BB76-0B44A90196A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA55F957-87A6-4F65-BB76-0B44A90196A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{560BDCC4-F843-429A-8C92-62F1EACC4A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{560BDCC4-F843-429A-8C92-62F1EACC4A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{560BDCC4-F843-429A-8C92-62F1EACC4A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU

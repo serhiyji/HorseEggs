@@ -17,7 +17,7 @@ namespace HorseEggs.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -29,6 +29,10 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -49,6 +53,8 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("SpecialtyId");
 
@@ -169,6 +175,10 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("EducationalProgramType")
                         .HasColumnType("int");
 
@@ -184,6 +194,8 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("SpecialtyId");
 
                     b.ToTable("EducationalPrograms");
@@ -196,6 +208,10 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -216,6 +232,8 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("SpecialtyId");
 
@@ -291,6 +309,45 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.ToTable("StandartEducationalPrograms");
                 });
 
+            modelBuilder.Entity("HorseEggs.Core.Entities.Token.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JwtId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -316,6 +373,14 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "12cfed24-5f93-4ef6-b799-275e8e316944",
+                            Name = "Ministry",
+                            NormalizedName = "MINISTRY"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -476,6 +541,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a77dcc0e-3acf-41d8-a0a8-127a091204ef",
+                            RoleId = "12cfed24-5f93-4ef6-b799-275e8e316944"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -509,14 +581,48 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasDiscriminator().HasValue("AppUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a77dcc0e-3acf-41d8-a0a8-127a091204ef",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "be50f8f6-bf4b-4090-bfcf-0bb5d4a2d518",
+                            Email = "admin@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EMAIL.COM",
+                            NormalizedUserName = "ADMIN@EMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPk1fyyyAn4EYT4pSIvec7L2YN3lVZP+dw3tW+BhPB+pSHPlexkLu1fiaJmNlIIy/w==",
+                            PhoneNumber = "+xx(xxx)xxx-xx-xx",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "a8189a3d-ebbf-4b4e-b9a6-8c4e6b4e83f4",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@email.com",
+                            FirstName = "John",
+                            LastName = "Connor",
+                            SurName = "Johnovych"
+                        });
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Competence", b =>
                 {
+                    b.HasOne("HorseEggs.Core.Entities.AppUser", "AppUser")
+                        .WithMany("Competences")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
                         .WithMany("Competences")
                         .HasForeignKey("SpecialtyId");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Specialty");
                 });
@@ -596,20 +702,36 @@ namespace HorseEggs.Infrastructure.Migrations
 
             modelBuilder.Entity("HorseEggs.Core.Entities.EducationalProgram", b =>
                 {
+                    b.HasOne("HorseEggs.Core.Entities.AppUser", "AppUser")
+                        .WithMany("EducationalPrograms")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
                         .WithMany("EducationalPrograms")
                         .HasForeignKey("SpecialtyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AppUser");
+
                     b.Navigation("Specialty");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes", b =>
                 {
+                    b.HasOne("HorseEggs.Core.Entities.AppUser", "AppUser")
+                        .WithMany("ProgramLearningOutcomes")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
-                        .WithMany()
+                        .WithMany("ProgramLearningOutcomess")
                         .HasForeignKey("SpecialtyId");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Specialty");
                 });
@@ -636,12 +758,23 @@ namespace HorseEggs.Infrastructure.Migrations
             modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>
                 {
                     b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
-                        .WithMany()
+                        .WithMany("StandartEducationalPrograms")
                         .HasForeignKey("SpecialtyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Specialty");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.Token.RefreshToken", b =>
+                {
+                    b.HasOne("HorseEggs.Core.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -728,6 +861,10 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("Competences");
 
                     b.Navigation("EducationalPrograms");
+
+                    b.Navigation("ProgramLearningOutcomess");
+
+                    b.Navigation("StandartEducationalPrograms");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>
@@ -735,6 +872,15 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("Competences_SEPs");
 
                     b.Navigation("ProgramLearningOutcomes_SEPs");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.AppUser", b =>
+                {
+                    b.Navigation("Competences");
+
+                    b.Navigation("EducationalPrograms");
+
+                    b.Navigation("ProgramLearningOutcomes");
                 });
 #pragma warning restore 612, 618
         }

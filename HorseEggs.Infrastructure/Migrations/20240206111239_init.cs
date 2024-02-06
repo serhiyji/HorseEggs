@@ -33,6 +33,7 @@ namespace HorseEggs.Infrastructure.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -190,6 +191,31 @@ namespace HorseEggs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JwtId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false),
+                    IsRevoked = table.Column<bool>(type: "bit", nullable: false),
+                    AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Competence",
                 columns: table => new
                 {
@@ -199,11 +225,18 @@ namespace HorseEggs.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompetenceType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: true)
+                    SpecialtyId = table.Column<int>(type: "int", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Competence", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Competence_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Competence_Specialties_SpecialtyId",
                         column: x => x.SpecialtyId,
@@ -220,11 +253,18 @@ namespace HorseEggs.Infrastructure.Migrations
                     Year = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EducationalProgramType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: false)
+                    SpecialtyId = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EducationalPrograms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationalPrograms_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EducationalPrograms_Specialties_SpecialtyId",
                         column: x => x.SpecialtyId,
@@ -243,11 +283,18 @@ namespace HorseEggs.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProgramLearningOutcomesType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: true)
+                    SpecialtyId = table.Column<int>(type: "int", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProgramLearningOutcomes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProgramLearningOutcomes_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProgramLearningOutcomes_Specialties_SpecialtyId",
                         column: x => x.SpecialtyId,
@@ -394,6 +441,21 @@ namespace HorseEggs.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "12cfed24-5f93-4ef6-b799-275e8e316944", null, "Ministry", "MINISTRY" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a77dcc0e-3acf-41d8-a0a8-127a091204ef", 0, "be50f8f6-bf4b-4090-bfcf-0bb5d4a2d518", "AppUser", "admin@email.com", true, "John", "Connor", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEPk1fyyyAn4EYT4pSIvec7L2YN3lVZP+dw3tW+BhPB+pSHPlexkLu1fiaJmNlIIy/w==", "+xx(xxx)xxx-xx-xx", true, "a8189a3d-ebbf-4b4e-b9a6-8c4e6b4e83f4", "Johnovych", false, "admin@email.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "12cfed24-5f93-4ef6-b799-275e8e316944", "a77dcc0e-3acf-41d8-a0a8-127a091204ef" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -432,6 +494,11 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Competence_AppUserId",
+                table: "Competence",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Competence_SpecialtyId",
@@ -479,9 +546,19 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "ProgramLearningOutcomesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EducationalPrograms_AppUserId",
+                table: "EducationalPrograms",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EducationalPrograms_SpecialtyId",
                 table: "EducationalPrograms",
                 column: "SpecialtyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProgramLearningOutcomes_AppUserId",
+                table: "ProgramLearningOutcomes",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgramLearningOutcomes_SpecialtyId",
@@ -497,6 +574,11 @@ namespace HorseEggs.Infrastructure.Migrations
                 name: "IX_ProgramLearningOutcomes_SEPs_StandartEducationalProgramId",
                 table: "ProgramLearningOutcomes_SEPs",
                 column: "StandartEducationalProgramId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StandartEducationalPrograms_SpecialtyId",
@@ -535,10 +617,10 @@ namespace HorseEggs.Infrastructure.Migrations
                 name: "ProgramLearningOutcomes_SEPs");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Competence");
@@ -554,6 +636,9 @@ namespace HorseEggs.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "StandartEducationalPrograms");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Specialties");
