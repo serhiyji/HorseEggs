@@ -17,11 +17,18 @@ namespace HorseEggs.Infrastructure.Context
 
         public DbSet<AppUser> AppUser { get; set; }
 
-        public DbSet<Competence> Competences { get; set; }
+        public DbSet<Competence> Competence { get; set; }
+        public DbSet<Competences_SEP> Competences_SEPs { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
+        public DbSet<Discipline_Competences_EP> Discipline_Competences_EPs { get; set; }
+        public DbSet<Discipline_ProgramLearningOutcomes_EP> Discipline_ProgramLearningOutcomes_EPs { get; set; }
         public DbSet<EducationalProgram> EducationalPrograms { get; set; }
-        public DbSet<EducationalProgramComponent> EducationalProgramComponents { get; set; }
+        public DbSet<ProgramLearningOutcomes> ProgramLearningOutcomes { get; set; }
+        public DbSet<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
+        public DbSet<StandartEducationalProgram> StandartEducationalPrograms { get; set; }
+
+
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
