@@ -114,6 +114,9 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EducationalComponentType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -149,6 +152,29 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasIndex("EducationalProgramId");
 
                     b.ToTable("EducationalComponent_Competences_EPs");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_EducationalProgram", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EducationalComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EducationalProgramId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EducationalComponentId");
+
+                    b.HasIndex("EducationalProgramId");
+
+                    b.ToTable("EducationalComponent_EducationalProgram");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_ProgramLearningOutcomes_EP", b =>
@@ -190,9 +216,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("EducationalProgramType")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -407,9 +430,15 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8ebdf7dd-87da-4cc7-80c5-97013734044f",
+                            Id = "7b1bd789-61df-4137-a28b-72a146ebafe3",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
+                        },
+                        new
+                        {
+                            Id = "ead3d48c-7f89-41ff-b44b-e1138e909b2d",
+                            Name = "University",
+                            NormalizedName = "UNIVERSITY"
                         });
                 });
 
@@ -575,8 +604,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "e47dc735-351f-4bfc-a57a-77fd5bf25969",
-                            RoleId = "8ebdf7dd-87da-4cc7-80c5-97013734044f"
+                            UserId = "a3b914e2-8809-40fb-815a-19fec6301d9a",
+                            RoleId = "7b1bd789-61df-4137-a28b-72a146ebafe3"
+                        },
+                        new
+                        {
+                            UserId = "55507d97-e5d0-4de2-91b5-71b5ed6130e8",
+                            RoleId = "ead3d48c-7f89-41ff-b44b-e1138e909b2d"
                         });
                 });
 
@@ -620,20 +654,40 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e47dc735-351f-4bfc-a57a-77fd5bf25969",
+                            Id = "a3b914e2-8809-40fb-815a-19fec6301d9a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "18145191-0f06-4f11-a59e-16d96bc95d8b",
-                            Email = "admin@email.com",
+                            ConcurrencyStamp = "a54d7cdd-ff37-41d2-8a54-b66ef6cb71ad",
+                            Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@EMAIL.COM",
-                            NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHAXjqtxVt9fn4n4TilbVksWWI18P8TZHl7BjSv63m7on9P03QoU8ggDYear4EgIHA==",
+                            NormalizedEmail = "MINISTRY@EMAIL.COM",
+                            NormalizedUserName = "MINISTRY@EMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMZuAUTdTVpnxQ5rpKJowwzyL92OlzkocIU8PfEpNYM0mkWuqobMf9Hl/ogU2MTK6w==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e45614d2-b693-45f9-8567-24c3eea3cb93",
+                            SecurityStamp = "f38d2eed-f6bb-4047-b5f9-ee7ca7a6c199",
                             TwoFactorEnabled = false,
-                            UserName = "admin@email.com",
+                            UserName = "ministry@email.com",
+                            FirstName = "John",
+                            LastName = "Connor",
+                            SurName = "Johnovych"
+                        },
+                        new
+                        {
+                            Id = "55507d97-e5d0-4de2-91b5-71b5ed6130e8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bc52c901-2ecf-4b8a-bfa8-4d1e4de7cc3e",
+                            Email = "university@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "UNIVERSITY@EMAIL.COM",
+                            NormalizedUserName = "UNIVERSITY@EMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB8ZjpblZRHwx6FPiQ6oso/GNvCo9JpiCM8K7pdrE9ECT1EukGBBrMD+c5OTj69SnQ==",
+                            PhoneNumber = "+xx(xxx)xxx-xx-xx",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "f681e3ff-846a-4acf-bd5b-bef0f3a1acad",
+                            TwoFactorEnabled = false,
+                            UserName = "university@email.com",
                             FirstName = "John",
                             LastName = "Connor",
                             SurName = "Johnovych"
@@ -710,6 +764,25 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Competence");
+
+                    b.Navigation("EducationalComponent");
+
+                    b.Navigation("EducationalProgram");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_EducationalProgram", b =>
+                {
+                    b.HasOne("HorseEggs.Core.Entities.EducationalComponent", "EducationalComponent")
+                        .WithMany("EducationalComponent_EducationalPrograms")
+                        .HasForeignKey("EducationalComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HorseEggs.Core.Entities.EducationalProgram", "EducationalProgram")
+                        .WithMany("EducationalComponent_EducationalPrograms")
+                        .HasForeignKey("EducationalProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("EducationalComponent");
 
@@ -897,6 +970,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 {
                     b.Navigation("EducationalComponent_Competences_EPs");
 
+                    b.Navigation("EducationalComponent_EducationalPrograms");
+
                     b.Navigation("EducationalComponent_ProgramLearningOutcomes_EPs");
                 });
 
@@ -905,6 +980,8 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("Competence_EPs");
 
                     b.Navigation("EducationalComponent_Competences_EPs");
+
+                    b.Navigation("EducationalComponent_EducationalPrograms");
 
                     b.Navigation("EducationalComponent_ProgramLearningOutcomes_EPs");
 

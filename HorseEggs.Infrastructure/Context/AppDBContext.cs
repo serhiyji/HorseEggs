@@ -130,7 +130,18 @@ namespace HorseEggs.Infrastructure.Context
                 .WithMany(educational_program => educational_program.ProgramLearningOutcomes_EPs)
                 .HasForeignKey(program_learning_lutcomes_ep => program_learning_lutcomes_ep.EducationalProgramId);
 
+            modelBuilder.Entity<EducationalComponent_EducationalProgram>()
+                .HasOne(educational_component_educational_program => educational_component_educational_program.EducationalComponent)
+                .WithMany(educational_component => educational_component.EducationalComponent_EducationalPrograms)
+                .HasForeignKey(educational_component_educational_program => educational_component_educational_program.EducationalComponentId);
+
+            modelBuilder.Entity<EducationalComponent_EducationalProgram>()
+                .HasOne(educational_component_educational_program => educational_component_educational_program.EducationalProgram)
+                .WithMany(educational_program => educational_program.EducationalComponent_EducationalPrograms)
+                .HasForeignKey(educational_component_educational_program => educational_component_educational_program.EducationalProgramId);
+
             modelBuilder.SeedMinistry();
+            modelBuilder.SeedUniversity();
         }
     }
 }

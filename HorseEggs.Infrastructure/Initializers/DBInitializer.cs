@@ -14,24 +14,24 @@ namespace HorseEggs.Infrastructure.Initializers
         public static void SeedMinistry(this ModelBuilder modelBuilder)
         {
             var passwordHasher = new PasswordHasher<AppUser>();
-            var adminUserId = Guid.NewGuid().ToString();
-            var adminRoleId = Guid.NewGuid().ToString();
+            var UserId = Guid.NewGuid().ToString();
+            var RoleId = Guid.NewGuid().ToString();
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
-                Id = adminRoleId,
+                Id = RoleId,
                 Name = "Ministry",
                 NormalizedName = "MINISTRY"
             });
             var adminUser = new AppUser
             {
-                Id = adminUserId,
+                Id = UserId,
                 FirstName = "John",
                 LastName = "Connor",
                 SurName = "Johnovych",
-                UserName = "admin@email.com",
-                NormalizedUserName = "ADMIN@EMAIL.COM",
-                Email = "admin@email.com",
-                NormalizedEmail = "ADMIN@EMAIL.COM",
+                UserName = "ministry@email.com",
+                NormalizedUserName = "MINISTRY@EMAIL.COM",
+                Email = "ministry@email.com",
+                NormalizedEmail = "MINISTRY@EMAIL.COM",
                 EmailConfirmed = true,
                 PhoneNumber = "+xx(xxx)xxx-xx-xx",
                 PhoneNumberConfirmed = true,
@@ -40,8 +40,41 @@ namespace HorseEggs.Infrastructure.Initializers
             modelBuilder.Entity<AppUser>().HasData(adminUser);
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
-                RoleId = adminRoleId,
-                UserId = adminUserId
+                RoleId = RoleId,
+                UserId = UserId
+            });
+        }
+        public static void SeedUniversity(this ModelBuilder modelBuilder)
+        {
+            var passwordHasher = new PasswordHasher<AppUser>();
+            var UserId = Guid.NewGuid().ToString();
+            var RoleId = Guid.NewGuid().ToString();
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = RoleId,
+                Name = "University",
+                NormalizedName = "UNIVERSITY"
+            });
+            var adminUser = new AppUser
+            {
+                Id = UserId,
+                FirstName = "John",
+                LastName = "Connor",
+                SurName = "Johnovych",
+                UserName = "university@email.com",
+                NormalizedUserName = "UNIVERSITY@EMAIL.COM",
+                Email = "university@email.com",
+                NormalizedEmail = "UNIVERSITY@EMAIL.COM",
+                EmailConfirmed = true,
+                PhoneNumber = "+xx(xxx)xxx-xx-xx",
+                PhoneNumberConfirmed = true,
+            };
+            adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "Qwerty-1");
+            modelBuilder.Entity<AppUser>().HasData(adminUser);
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = RoleId,
+                UserId = UserId
             });
         }
     }

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HorseEggs.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -61,7 +63,8 @@ namespace HorseEggs.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EducationalComponentType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -314,7 +317,6 @@ namespace HorseEggs.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EducationalProgramType = table.Column<int>(type: "int", nullable: false),
                     StandartEducationalProgramId = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -421,6 +423,32 @@ namespace HorseEggs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EducationalComponent_EducationalProgram",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationalComponentId = table.Column<int>(type: "int", nullable: false),
+                    EducationalProgramId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationalComponent_EducationalProgram", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_EducationalProgram_EducationalComponents_EducationalComponentId",
+                        column: x => x.EducationalComponentId,
+                        principalTable: "EducationalComponents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_EducationalProgram_EducationalPrograms_EducationalProgramId",
+                        column: x => x.EducationalProgramId,
+                        principalTable: "EducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EducationalComponent_ProgramLearningOutcomes_EPs",
                 columns: table => new
                 {
@@ -482,17 +510,29 @@ namespace HorseEggs.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8ebdf7dd-87da-4cc7-80c5-97013734044f", null, "Ministry", "MINISTRY" });
+                values: new object[,]
+                {
+                    { "7b1bd789-61df-4137-a28b-72a146ebafe3", null, "Ministry", "MINISTRY" },
+                    { "ead3d48c-7f89-41ff-b44b-e1138e909b2d", null, "University", "UNIVERSITY" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e47dc735-351f-4bfc-a57a-77fd5bf25969", 0, "18145191-0f06-4f11-a59e-16d96bc95d8b", "AppUser", "admin@email.com", true, "John", "Connor", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEHAXjqtxVt9fn4n4TilbVksWWI18P8TZHl7BjSv63m7on9P03QoU8ggDYear4EgIHA==", "+xx(xxx)xxx-xx-xx", true, "e45614d2-b693-45f9-8567-24c3eea3cb93", "Johnovych", false, "admin@email.com" });
+                values: new object[,]
+                {
+                    { "55507d97-e5d0-4de2-91b5-71b5ed6130e8", 0, "bc52c901-2ecf-4b8a-bfa8-4d1e4de7cc3e", "AppUser", "university@email.com", true, "John", "Connor", false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEB8ZjpblZRHwx6FPiQ6oso/GNvCo9JpiCM8K7pdrE9ECT1EukGBBrMD+c5OTj69SnQ==", "+xx(xxx)xxx-xx-xx", true, "f681e3ff-846a-4acf-bd5b-bef0f3a1acad", "Johnovych", false, "university@email.com" },
+                    { "a3b914e2-8809-40fb-815a-19fec6301d9a", 0, "a54d7cdd-ff37-41d2-8a54-b66ef6cb71ad", "AppUser", "ministry@email.com", true, "John", "Connor", false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEMZuAUTdTVpnxQ5rpKJowwzyL92OlzkocIU8PfEpNYM0mkWuqobMf9Hl/ogU2MTK6w==", "+xx(xxx)xxx-xx-xx", true, "f38d2eed-f6bb-4047-b5f9-ee7ca7a6c199", "Johnovych", false, "ministry@email.com" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "8ebdf7dd-87da-4cc7-80c5-97013734044f", "e47dc735-351f-4bfc-a57a-77fd5bf25969" });
+                values: new object[,]
+                {
+                    { "ead3d48c-7f89-41ff-b44b-e1138e909b2d", "55507d97-e5d0-4de2-91b5-71b5ed6130e8" },
+                    { "7b1bd789-61df-4137-a28b-72a146ebafe3", "a3b914e2-8809-40fb-815a-19fec6301d9a" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -571,6 +611,16 @@ namespace HorseEggs.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_EducationalComponent_Competences_EPs_EducationalProgramId",
                 table: "EducationalComponent_Competences_EPs",
+                column: "EducationalProgramId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationalComponent_EducationalProgram_EducationalComponentId",
+                table: "EducationalComponent_EducationalProgram",
+                column: "EducationalComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationalComponent_EducationalProgram_EducationalProgramId",
+                table: "EducationalComponent_EducationalProgram",
                 column: "EducationalProgramId");
 
             migrationBuilder.CreateIndex(
@@ -660,6 +710,9 @@ namespace HorseEggs.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "EducationalComponent_Competences_EPs");
+
+            migrationBuilder.DropTable(
+                name: "EducationalComponent_EducationalProgram");
 
             migrationBuilder.DropTable(
                 name: "EducationalComponent_ProgramLearningOutcomes_EPs");
