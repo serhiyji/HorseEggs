@@ -55,19 +55,17 @@ namespace HorseEggs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Disciplines",
+                name: "EducationalComponents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Credit = table.Column<int>(type: "int", nullable: false),
-                    PassType = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Disciplines", x => x.Id);
+                    table.PrimaryKey("PK_EducationalComponents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,6 +189,52 @@ namespace HorseEggs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Competence",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompetenceType = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Competence", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Competence_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProgramLearningOutcomes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProgramLearningOutcomesType = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProgramLearningOutcomes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProgramLearningOutcomes_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RefreshTokens",
                 columns: table => new
                 {
@@ -216,93 +260,6 @@ namespace HorseEggs.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Competence",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompetenceType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: true),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Competence", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Competence_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Competence_Specialties_SpecialtyId",
-                        column: x => x.SpecialtyId,
-                        principalTable: "Specialties",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationalPrograms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EducationalProgramType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationalPrograms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EducationalPrograms_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EducationalPrograms_Specialties_SpecialtyId",
-                        column: x => x.SpecialtyId,
-                        principalTable: "Specialties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProgramLearningOutcomes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProgramLearningOutcomesType = table.Column<int>(type: "int", nullable: false),
-                    SpecialtyId = table.Column<int>(type: "int", nullable: true),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProgramLearningOutcomes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProgramLearningOutcomes_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ProgramLearningOutcomes_Specialties_SpecialtyId",
-                        column: x => x.SpecialtyId,
-                        principalTable: "Specialties",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "StandartEducationalPrograms",
                 columns: table => new
                 {
@@ -319,72 +276,6 @@ namespace HorseEggs.Infrastructure.Migrations
                         name: "FK_StandartEducationalPrograms_Specialties_SpecialtyId",
                         column: x => x.SpecialtyId,
                         principalTable: "Specialties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Discipline_Competences_EPs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EducationalProgramId = table.Column<int>(type: "int", nullable: false),
-                    DisciplineId = table.Column<int>(type: "int", nullable: false),
-                    CompetenceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Discipline_Competences_EPs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Discipline_Competences_EPs_Competence_CompetenceId",
-                        column: x => x.CompetenceId,
-                        principalTable: "Competence",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Discipline_Competences_EPs_Disciplines_DisciplineId",
-                        column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Discipline_Competences_EPs_EducationalPrograms_EducationalProgramId",
-                        column: x => x.EducationalProgramId,
-                        principalTable: "EducationalPrograms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Discipline_ProgramLearningOutcomes_EPs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EducationalProgramId = table.Column<int>(type: "int", nullable: false),
-                    DisciplineId = table.Column<int>(type: "int", nullable: false),
-                    ProgramLearningOutcomesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Discipline_ProgramLearningOutcomes_EPs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Discipline_ProgramLearningOutcomes_EPs_Disciplines_DisciplineId",
-                        column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Discipline_ProgramLearningOutcomes_EPs_EducationalPrograms_EducationalProgramId",
-                        column: x => x.EducationalProgramId,
-                        principalTable: "EducationalPrograms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Discipline_ProgramLearningOutcomes_EPs_ProgramLearningOutcomes_ProgramLearningOutcomesId",
-                        column: x => x.ProgramLearningOutcomesId,
-                        principalTable: "ProgramLearningOutcomes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -409,6 +300,35 @@ namespace HorseEggs.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Competences_SEPs_StandartEducationalPrograms_StandartEducationalProgramId",
+                        column: x => x.StandartEducationalProgramId,
+                        principalTable: "StandartEducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationalPrograms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EducationalProgramType = table.Column<int>(type: "int", nullable: false),
+                    StandartEducationalProgramId = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationalPrograms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationalPrograms_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EducationalPrograms_StandartEducationalPrograms_StandartEducationalProgramId",
                         column: x => x.StandartEducationalProgramId,
                         principalTable: "StandartEducationalPrograms",
                         principalColumn: "Id",
@@ -441,20 +361,138 @@ namespace HorseEggs.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Competence_EP",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompetenceId = table.Column<int>(type: "int", nullable: false),
+                    EducationalProgramId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Competence_EP", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Competence_EP_Competence_CompetenceId",
+                        column: x => x.CompetenceId,
+                        principalTable: "Competence",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Competence_EP_EducationalPrograms_EducationalProgramId",
+                        column: x => x.EducationalProgramId,
+                        principalTable: "EducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationalComponent_Competences_EPs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationalProgramId = table.Column<int>(type: "int", nullable: false),
+                    EducationalComponentId = table.Column<int>(type: "int", nullable: false),
+                    CompetenceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationalComponent_Competences_EPs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_Competences_EPs_Competence_CompetenceId",
+                        column: x => x.CompetenceId,
+                        principalTable: "Competence",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_Competences_EPs_EducationalComponents_EducationalComponentId",
+                        column: x => x.EducationalComponentId,
+                        principalTable: "EducationalComponents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_Competences_EPs_EducationalPrograms_EducationalProgramId",
+                        column: x => x.EducationalProgramId,
+                        principalTable: "EducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationalComponent_ProgramLearningOutcomes_EPs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationalProgramId = table.Column<int>(type: "int", nullable: false),
+                    EducationalComponentId = table.Column<int>(type: "int", nullable: false),
+                    ProgramLearningOutcomesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationalComponent_ProgramLearningOutcomes_EPs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_ProgramLearningOutcomes_EPs_EducationalComponents_EducationalComponentId",
+                        column: x => x.EducationalComponentId,
+                        principalTable: "EducationalComponents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_ProgramLearningOutcomes_EPs_EducationalPrograms_EducationalProgramId",
+                        column: x => x.EducationalProgramId,
+                        principalTable: "EducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationalComponent_ProgramLearningOutcomes_EPs_ProgramLearningOutcomes_ProgramLearningOutcomesId",
+                        column: x => x.ProgramLearningOutcomesId,
+                        principalTable: "ProgramLearningOutcomes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProgramLearningOutcomes_EP",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProgramLearningOutcomesId = table.Column<int>(type: "int", nullable: false),
+                    EducationalProgramId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProgramLearningOutcomes_EP", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProgramLearningOutcomes_EP_EducationalPrograms_EducationalProgramId",
+                        column: x => x.EducationalProgramId,
+                        principalTable: "EducationalPrograms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProgramLearningOutcomes_EP_ProgramLearningOutcomes_ProgramLearningOutcomesId",
+                        column: x => x.ProgramLearningOutcomesId,
+                        principalTable: "ProgramLearningOutcomes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "12cfed24-5f93-4ef6-b799-275e8e316944", null, "Ministry", "MINISTRY" });
+                values: new object[] { "8ebdf7dd-87da-4cc7-80c5-97013734044f", null, "Ministry", "MINISTRY" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a77dcc0e-3acf-41d8-a0a8-127a091204ef", 0, "be50f8f6-bf4b-4090-bfcf-0bb5d4a2d518", "AppUser", "admin@email.com", true, "John", "Connor", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEPk1fyyyAn4EYT4pSIvec7L2YN3lVZP+dw3tW+BhPB+pSHPlexkLu1fiaJmNlIIy/w==", "+xx(xxx)xxx-xx-xx", true, "a8189a3d-ebbf-4b4e-b9a6-8c4e6b4e83f4", "Johnovych", false, "admin@email.com" });
+                values: new object[] { "e47dc735-351f-4bfc-a57a-77fd5bf25969", 0, "18145191-0f06-4f11-a59e-16d96bc95d8b", "AppUser", "admin@email.com", true, "John", "Connor", false, null, "ADMIN@EMAIL.COM", "ADMIN@EMAIL.COM", "AQAAAAIAAYagAAAAEHAXjqtxVt9fn4n4TilbVksWWI18P8TZHl7BjSv63m7on9P03QoU8ggDYear4EgIHA==", "+xx(xxx)xxx-xx-xx", true, "e45614d2-b693-45f9-8567-24c3eea3cb93", "Johnovych", false, "admin@email.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "12cfed24-5f93-4ef6-b799-275e8e316944", "a77dcc0e-3acf-41d8-a0a8-127a091204ef" });
+                values: new object[] { "8ebdf7dd-87da-4cc7-80c5-97013734044f", "e47dc735-351f-4bfc-a57a-77fd5bf25969" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -501,9 +539,14 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Competence_SpecialtyId",
-                table: "Competence",
-                column: "SpecialtyId");
+                name: "IX_Competence_EP_CompetenceId",
+                table: "Competence_EP",
+                column: "CompetenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Competence_EP_EducationalProgramId",
+                table: "Competence_EP",
+                column: "EducationalProgramId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Competences_SEPs_CompetenceId",
@@ -516,33 +559,33 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "StandartEducationalProgramId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_Competences_EPs_CompetenceId",
-                table: "Discipline_Competences_EPs",
+                name: "IX_EducationalComponent_Competences_EPs_CompetenceId",
+                table: "EducationalComponent_Competences_EPs",
                 column: "CompetenceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_Competences_EPs_DisciplineId",
-                table: "Discipline_Competences_EPs",
-                column: "DisciplineId");
+                name: "IX_EducationalComponent_Competences_EPs_EducationalComponentId",
+                table: "EducationalComponent_Competences_EPs",
+                column: "EducationalComponentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_Competences_EPs_EducationalProgramId",
-                table: "Discipline_Competences_EPs",
+                name: "IX_EducationalComponent_Competences_EPs_EducationalProgramId",
+                table: "EducationalComponent_Competences_EPs",
                 column: "EducationalProgramId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_ProgramLearningOutcomes_EPs_DisciplineId",
-                table: "Discipline_ProgramLearningOutcomes_EPs",
-                column: "DisciplineId");
+                name: "IX_EducationalComponent_ProgramLearningOutcomes_EPs_EducationalComponentId",
+                table: "EducationalComponent_ProgramLearningOutcomes_EPs",
+                column: "EducationalComponentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_ProgramLearningOutcomes_EPs_EducationalProgramId",
-                table: "Discipline_ProgramLearningOutcomes_EPs",
+                name: "IX_EducationalComponent_ProgramLearningOutcomes_EPs_EducationalProgramId",
+                table: "EducationalComponent_ProgramLearningOutcomes_EPs",
                 column: "EducationalProgramId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discipline_ProgramLearningOutcomes_EPs_ProgramLearningOutcomesId",
-                table: "Discipline_ProgramLearningOutcomes_EPs",
+                name: "IX_EducationalComponent_ProgramLearningOutcomes_EPs_ProgramLearningOutcomesId",
+                table: "EducationalComponent_ProgramLearningOutcomes_EPs",
                 column: "ProgramLearningOutcomesId");
 
             migrationBuilder.CreateIndex(
@@ -551,9 +594,9 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EducationalPrograms_SpecialtyId",
+                name: "IX_EducationalPrograms_StandartEducationalProgramId",
                 table: "EducationalPrograms",
-                column: "SpecialtyId");
+                column: "StandartEducationalProgramId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgramLearningOutcomes_AppUserId",
@@ -561,9 +604,14 @@ namespace HorseEggs.Infrastructure.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProgramLearningOutcomes_SpecialtyId",
-                table: "ProgramLearningOutcomes",
-                column: "SpecialtyId");
+                name: "IX_ProgramLearningOutcomes_EP_EducationalProgramId",
+                table: "ProgramLearningOutcomes_EP",
+                column: "EducationalProgramId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProgramLearningOutcomes_EP_ProgramLearningOutcomesId",
+                table: "ProgramLearningOutcomes_EP",
+                column: "ProgramLearningOutcomesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgramLearningOutcomes_SEPs_ProgramLearningOutcomesId",
@@ -605,13 +653,19 @@ namespace HorseEggs.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Competence_EP");
+
+            migrationBuilder.DropTable(
                 name: "Competences_SEPs");
 
             migrationBuilder.DropTable(
-                name: "Discipline_Competences_EPs");
+                name: "EducationalComponent_Competences_EPs");
 
             migrationBuilder.DropTable(
-                name: "Discipline_ProgramLearningOutcomes_EPs");
+                name: "EducationalComponent_ProgramLearningOutcomes_EPs");
+
+            migrationBuilder.DropTable(
+                name: "ProgramLearningOutcomes_EP");
 
             migrationBuilder.DropTable(
                 name: "ProgramLearningOutcomes_SEPs");
@@ -626,7 +680,7 @@ namespace HorseEggs.Infrastructure.Migrations
                 name: "Competence");
 
             migrationBuilder.DropTable(
-                name: "Disciplines");
+                name: "EducationalComponents");
 
             migrationBuilder.DropTable(
                 name: "EducationalPrograms");

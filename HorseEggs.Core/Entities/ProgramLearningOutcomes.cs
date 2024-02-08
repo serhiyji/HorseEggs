@@ -15,10 +15,9 @@ namespace HorseEggs.Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public ProgramLearningOutcomesType ProgramLearningOutcomesType { get; set; }
-        public int? SpecialtyId { get; set; }
-        public Specialty? Specialty { get; set; }
-        public IEnumerable<Discipline_ProgramLearningOutcomes_EP> Discipline_ProgramLearningOutcomes_EPs { get; set; }
+        public IEnumerable<EducationalComponent_ProgramLearningOutcomes_EP> EducationalComponent_ProgramLearningOutcomes_EPs { get; set; }
         public IEnumerable<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
+        public IEnumerable<ProgramLearningOutcomes_EP> ProgramLearningOutcomes_EPs { get; set; }
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

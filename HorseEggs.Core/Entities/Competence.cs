@@ -15,10 +15,9 @@ namespace HorseEggs.Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public CompetenceType CompetenceType {  get; set; }
-        public int? SpecialtyId { get; set; }
-        public Specialty? Specialty { get; set; }
-        public IEnumerable<Discipline_Competences_EP> Discipline_Competences_EPs { get; set; }
+        public IEnumerable<EducationalComponent_Competences_EP> EducationalComponent_Competences_EPs { get; set; }
         public IEnumerable<Competences_SEP> Competences_SEPs { get; set; }
+        public IEnumerable<Competence_EP> Competence_EPs { get; set; }
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

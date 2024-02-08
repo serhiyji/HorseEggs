@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HorseEggs.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240206111239_init")]
+    [Migration("20240208124240_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -52,16 +52,34 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SpecialtyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("SpecialtyId");
-
                     b.ToTable("Competence");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.Competence_EP", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CompetenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EducationalProgramId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompetenceId");
+
+                    b.HasIndex("EducationalProgramId");
+
+                    b.ToTable("Competence_EP");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Competences_SEP", b =>
@@ -87,7 +105,7 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.ToTable("Competences_SEPs");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,22 +117,16 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Credit")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PassType")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Disciplines");
+                    b.ToTable("EducationalComponents");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline_Competences_EP", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_Competences_EP", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +137,7 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Property<int>("CompetenceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DisciplineId")
+                    b.Property<int>("EducationalComponentId")
                         .HasColumnType("int");
 
                     b.Property<int>("EducationalProgramId")
@@ -135,14 +147,14 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.HasIndex("CompetenceId");
 
-                    b.HasIndex("DisciplineId");
+                    b.HasIndex("EducationalComponentId");
 
                     b.HasIndex("EducationalProgramId");
 
-                    b.ToTable("Discipline_Competences_EPs");
+                    b.ToTable("EducationalComponent_Competences_EPs");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline_ProgramLearningOutcomes_EP", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_ProgramLearningOutcomes_EP", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +162,7 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DisciplineId")
+                    b.Property<int>("EducationalComponentId")
                         .HasColumnType("int");
 
                     b.Property<int>("EducationalProgramId")
@@ -161,13 +173,13 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DisciplineId");
+                    b.HasIndex("EducationalComponentId");
 
                     b.HasIndex("EducationalProgramId");
 
                     b.HasIndex("ProgramLearningOutcomesId");
 
-                    b.ToTable("Discipline_ProgramLearningOutcomes_EPs");
+                    b.ToTable("EducationalComponent_ProgramLearningOutcomes_EPs");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.EducationalProgram", b =>
@@ -189,7 +201,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpecialtyId")
+                    b.Property<int>("StandartEducationalProgramId")
                         .HasColumnType("int");
 
                     b.Property<int>("Year")
@@ -199,7 +211,7 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("SpecialtyId");
+                    b.HasIndex("StandartEducationalProgramId");
 
                     b.ToTable("EducationalPrograms");
                 });
@@ -231,16 +243,34 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Property<int>("ProgramLearningOutcomesType")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SpecialtyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("SpecialtyId");
-
                     b.ToTable("ProgramLearningOutcomes");
+                });
+
+            modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes_EP", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EducationalProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProgramLearningOutcomesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EducationalProgramId");
+
+                    b.HasIndex("ProgramLearningOutcomesId");
+
+                    b.ToTable("ProgramLearningOutcomes_EP");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes_SEP", b =>
@@ -380,7 +410,7 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "12cfed24-5f93-4ef6-b799-275e8e316944",
+                            Id = "8ebdf7dd-87da-4cc7-80c5-97013734044f",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         });
@@ -548,8 +578,8 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a77dcc0e-3acf-41d8-a0a8-127a091204ef",
-                            RoleId = "12cfed24-5f93-4ef6-b799-275e8e316944"
+                            UserId = "e47dc735-351f-4bfc-a57a-77fd5bf25969",
+                            RoleId = "8ebdf7dd-87da-4cc7-80c5-97013734044f"
                         });
                 });
 
@@ -593,18 +623,18 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a77dcc0e-3acf-41d8-a0a8-127a091204ef",
+                            Id = "e47dc735-351f-4bfc-a57a-77fd5bf25969",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "be50f8f6-bf4b-4090-bfcf-0bb5d4a2d518",
+                            ConcurrencyStamp = "18145191-0f06-4f11-a59e-16d96bc95d8b",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPk1fyyyAn4EYT4pSIvec7L2YN3lVZP+dw3tW+BhPB+pSHPlexkLu1fiaJmNlIIy/w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHAXjqtxVt9fn4n4TilbVksWWI18P8TZHl7BjSv63m7on9P03QoU8ggDYear4EgIHA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a8189a3d-ebbf-4b4e-b9a6-8c4e6b4e83f4",
+                            SecurityStamp = "e45614d2-b693-45f9-8567-24c3eea3cb93",
                             TwoFactorEnabled = false,
                             UserName = "admin@email.com",
                             FirstName = "John",
@@ -621,13 +651,26 @@ namespace HorseEggs.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
-                        .WithMany("Competences")
-                        .HasForeignKey("SpecialtyId");
-
                     b.Navigation("AppUser");
+                });
 
-                    b.Navigation("Specialty");
+            modelBuilder.Entity("HorseEggs.Core.Entities.Competence_EP", b =>
+                {
+                    b.HasOne("HorseEggs.Core.Entities.Competence", "Competence")
+                        .WithMany("Competence_EPs")
+                        .HasForeignKey("CompetenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HorseEggs.Core.Entities.EducationalProgram", "EducationalProgram")
+                        .WithMany("Competence_EPs")
+                        .HasForeignKey("EducationalProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Competence");
+
+                    b.Navigation("EducationalProgram");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Competences_SEP", b =>
@@ -649,54 +692,54 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("StandartEducationalProgram");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline_Competences_EP", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_Competences_EP", b =>
                 {
                     b.HasOne("HorseEggs.Core.Entities.Competence", "Competence")
-                        .WithMany("Discipline_Competences_EPs")
+                        .WithMany("EducationalComponent_Competences_EPs")
                         .HasForeignKey("CompetenceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HorseEggs.Core.Entities.Discipline", "Discipline")
-                        .WithMany("Discipline_Competences_EPs")
-                        .HasForeignKey("DisciplineId")
+                    b.HasOne("HorseEggs.Core.Entities.EducationalComponent", "EducationalComponent")
+                        .WithMany("EducationalComponent_Competences_EPs")
+                        .HasForeignKey("EducationalComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HorseEggs.Core.Entities.EducationalProgram", "EducationalProgram")
-                        .WithMany("Discipline_Competences_EPs")
+                        .WithMany("EducationalComponent_Competences_EPs")
                         .HasForeignKey("EducationalProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Competence");
 
-                    b.Navigation("Discipline");
+                    b.Navigation("EducationalComponent");
 
                     b.Navigation("EducationalProgram");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline_ProgramLearningOutcomes_EP", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent_ProgramLearningOutcomes_EP", b =>
                 {
-                    b.HasOne("HorseEggs.Core.Entities.Discipline", "Discipline")
-                        .WithMany("Discipline_ProgramLearningOutcomes_EPs")
-                        .HasForeignKey("DisciplineId")
+                    b.HasOne("HorseEggs.Core.Entities.EducationalComponent", "EducationalComponent")
+                        .WithMany("EducationalComponent_ProgramLearningOutcomes_EPs")
+                        .HasForeignKey("EducationalComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HorseEggs.Core.Entities.EducationalProgram", "EducationalProgram")
-                        .WithMany("Discipline_ProgramLearningOutcomes_EPs")
+                        .WithMany("EducationalComponent_ProgramLearningOutcomes_EPs")
                         .HasForeignKey("EducationalProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HorseEggs.Core.Entities.ProgramLearningOutcomes", "ProgramLearningOutcomes")
-                        .WithMany("Discipline_ProgramLearningOutcomes_EPs")
+                        .WithMany("EducationalComponent_ProgramLearningOutcomes_EPs")
                         .HasForeignKey("ProgramLearningOutcomesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Discipline");
+                    b.Navigation("EducationalComponent");
 
                     b.Navigation("EducationalProgram");
 
@@ -711,15 +754,15 @@ namespace HorseEggs.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
+                    b.HasOne("HorseEggs.Core.Entities.StandartEducationalProgram", "StandartEducationalProgram")
                         .WithMany("EducationalPrograms")
-                        .HasForeignKey("SpecialtyId")
+                        .HasForeignKey("StandartEducationalProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
 
-                    b.Navigation("Specialty");
+                    b.Navigation("StandartEducationalProgram");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes", b =>
@@ -730,13 +773,26 @@ namespace HorseEggs.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
-                        .WithMany("ProgramLearningOutcomess")
-                        .HasForeignKey("SpecialtyId");
-
                     b.Navigation("AppUser");
+                });
 
-                    b.Navigation("Specialty");
+            modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes_EP", b =>
+                {
+                    b.HasOne("HorseEggs.Core.Entities.EducationalProgram", "EducationalProgram")
+                        .WithMany("ProgramLearningOutcomes_EPs")
+                        .HasForeignKey("EducationalProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HorseEggs.Core.Entities.ProgramLearningOutcomes", "ProgramLearningOutcomes")
+                        .WithMany("ProgramLearningOutcomes_EPs")
+                        .HasForeignKey("ProgramLearningOutcomesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EducationalProgram");
+
+                    b.Navigation("ProgramLearningOutcomes");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes_SEP", b =>
@@ -833,46 +889,50 @@ namespace HorseEggs.Infrastructure.Migrations
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Competence", b =>
                 {
+                    b.Navigation("Competence_EPs");
+
                     b.Navigation("Competences_SEPs");
 
-                    b.Navigation("Discipline_Competences_EPs");
+                    b.Navigation("EducationalComponent_Competences_EPs");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Discipline", b =>
+            modelBuilder.Entity("HorseEggs.Core.Entities.EducationalComponent", b =>
                 {
-                    b.Navigation("Discipline_Competences_EPs");
+                    b.Navigation("EducationalComponent_Competences_EPs");
 
-                    b.Navigation("Discipline_ProgramLearningOutcomes_EPs");
+                    b.Navigation("EducationalComponent_ProgramLearningOutcomes_EPs");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.EducationalProgram", b =>
                 {
-                    b.Navigation("Discipline_Competences_EPs");
+                    b.Navigation("Competence_EPs");
 
-                    b.Navigation("Discipline_ProgramLearningOutcomes_EPs");
+                    b.Navigation("EducationalComponent_Competences_EPs");
+
+                    b.Navigation("EducationalComponent_ProgramLearningOutcomes_EPs");
+
+                    b.Navigation("ProgramLearningOutcomes_EPs");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.ProgramLearningOutcomes", b =>
                 {
-                    b.Navigation("Discipline_ProgramLearningOutcomes_EPs");
+                    b.Navigation("EducationalComponent_ProgramLearningOutcomes_EPs");
+
+                    b.Navigation("ProgramLearningOutcomes_EPs");
 
                     b.Navigation("ProgramLearningOutcomes_SEPs");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Specialty", b =>
                 {
-                    b.Navigation("Competences");
-
-                    b.Navigation("EducationalPrograms");
-
-                    b.Navigation("ProgramLearningOutcomess");
-
                     b.Navigation("StandartEducationalPrograms");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>
                 {
                     b.Navigation("Competences_SEPs");
+
+                    b.Navigation("EducationalPrograms");
 
                     b.Navigation("ProgramLearningOutcomes_SEPs");
                 });

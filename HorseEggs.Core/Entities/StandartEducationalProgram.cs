@@ -16,5 +16,6 @@ namespace HorseEggs.Core.Entities
         public Specialty Specialty { get; set; }
         public IEnumerable<Competences_SEP> Competences_SEPs { get; set; }
         public IEnumerable<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
+        public IEnumerable<EducationalProgram> EducationalPrograms { get; set; }
     }
 }
