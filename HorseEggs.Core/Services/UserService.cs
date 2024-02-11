@@ -74,5 +74,22 @@ namespace HorseEggs.Core.Services
             return new ServiceResponse(true);
         }
         #endregion
+
+        #region
+        public async Task<ServiceResponse> RegistrationUniversity(RegistrationUniversityDto model)
+        {
+            model.Role = "University";
+            AppUser NewUser = _mapper.Map<RegistrationUniversityDto, AppUser>(model);
+            NewUser.EmailConfirmed = true;
+            IdentityResult result = await _userManager.CreateAsync(NewUser, model.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(NewUser, model.Role);
+                //await SendConfirmationEmailAsync(NewUser);
+                return new ServiceResponse(true, "University has been added");
+            }
+            return new ServiceResponse(false, "Something went wrong", errors: result.Errors.Select(e => e.Description));
+        }
+        #endregion
     }
 }

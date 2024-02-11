@@ -30,5 +30,22 @@ namespace HorseEggs.Api.Controllers
             }
             return BadRequest(validationResult.Errors.FirstOrDefault());
         }
+        [AllowAnonymous]
+        [HttpPost("registrationuniversity")]
+        public async Task<IActionResult> RegistrationUniversity(RegistrationUniversityDto model)
+        {
+            RegistrationUniversityValidation validaor = new RegistrationUniversityValidation();
+            var validationResult = await validaor.ValidateAsync(model);
+            if (validationResult.IsValid)
+            {
+                ServiceResponse response = await _userService.RegistrationUniversity(model);
+                if (response.Success)
+                {
+                    return Ok(response.Message);
+                }
+                return Ok(response.Errors.FirstOrDefault());
+            }
+            return Ok(validationResult.Errors.FirstOrDefault());
+        }
     }
 }

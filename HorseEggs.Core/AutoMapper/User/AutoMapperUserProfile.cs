@@ -19,6 +19,7 @@ namespace HorseEggs.Core.AutoMapper.User
             CreateMap<AppUser, CreateUserDto>();
             CreateMap<DeleteUserDto, AppUser>().ReverseMap();
             CreateMap<EditUserDto, AppUser>().ReverseMap();
+            CreateMap<RegistrationUniversityDto, AppUser>().ForMember(dst => dst.UserName, act => act.MapFrom(src => src.Email));
         }
     }
 }
