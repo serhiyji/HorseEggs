@@ -80,8 +80,6 @@ namespace HorseEggs.Core.Services
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("Id", user.Id),
-                    new Claim("Name", user.FirstName),
-                    new Claim("Surname", user.LastName),
                     new Claim("Email", user.Email),
                     new Claim("EmailConfirm", user.EmailConfirmed.ToString()),
                     new Claim("PhoneNumber", user.PhoneNumber ?? ""),

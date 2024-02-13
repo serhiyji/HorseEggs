@@ -33,9 +33,6 @@ namespace HorseEggs.Infrastructure.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -512,17 +509,17 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7b1bd789-61df-4137-a28b-72a146ebafe3", null, "Ministry", "MINISTRY" },
-                    { "ead3d48c-7f89-41ff-b44b-e1138e909b2d", null, "University", "UNIVERSITY" }
+                    { "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b", null, "Ministry", "MINISTRY" },
+                    { "f666255d-0ada-4062-8cef-40a24d6966f3", null, "University", "UNIVERSITY" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "SurName", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "55507d97-e5d0-4de2-91b5-71b5ed6130e8", 0, "bc52c901-2ecf-4b8a-bfa8-4d1e4de7cc3e", "AppUser", "university@email.com", true, "John", "Connor", false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEB8ZjpblZRHwx6FPiQ6oso/GNvCo9JpiCM8K7pdrE9ECT1EukGBBrMD+c5OTj69SnQ==", "+xx(xxx)xxx-xx-xx", true, "f681e3ff-846a-4acf-bd5b-bef0f3a1acad", "Johnovych", false, "university@email.com" },
-                    { "a3b914e2-8809-40fb-815a-19fec6301d9a", 0, "a54d7cdd-ff37-41d2-8a54-b66ef6cb71ad", "AppUser", "ministry@email.com", true, "John", "Connor", false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEMZuAUTdTVpnxQ5rpKJowwzyL92OlzkocIU8PfEpNYM0mkWuqobMf9Hl/ogU2MTK6w==", "+xx(xxx)xxx-xx-xx", true, "f38d2eed-f6bb-4047-b5f9-ee7ca7a6c199", "Johnovych", false, "ministry@email.com" }
+                    { "a7f75778-f022-4ce0-be73-4f808bf3a28d", 0, "1da96490-44ee-493f-a082-df57922cc93f", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEN9V6LoaUdWYXG6wkUGQtT+c7/3AivFdcw+CpYZ+Ny1RWLDkSkA5lsQCT/AGn9eS6w==", "+xx(xxx)xxx-xx-xx", true, "71299961-87a0-45ef-a217-eeb2440af6fa", false, "ministry@email.com" },
+                    { "f6d1e905-7055-4728-abaa-ad29c1c0a1df", 0, "e0f0d1a8-4c1b-41c1-a799-4ef5b8298d63", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEEJUUnvStJJHvn/KCzl5vMKuOvQX0YZdF+cTSDbudVGWJReRgtVE37zAlAKU4D8qPA==", "+xx(xxx)xxx-xx-xx", true, "5370135c-a3d1-47b5-b1c8-ff0a4cd72f00", false, "university@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -530,8 +527,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "ead3d48c-7f89-41ff-b44b-e1138e909b2d", "55507d97-e5d0-4de2-91b5-71b5ed6130e8" },
-                    { "7b1bd789-61df-4137-a28b-72a146ebafe3", "a3b914e2-8809-40fb-815a-19fec6301d9a" }
+                    { "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b", "a7f75778-f022-4ce0-be73-4f808bf3a28d" },
+                    { "f666255d-0ada-4062-8cef-40a24d6966f3", "f6d1e905-7055-4728-abaa-ad29c1c0a1df" }
                 });
 
             migrationBuilder.CreateIndex(

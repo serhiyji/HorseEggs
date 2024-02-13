@@ -25,9 +25,6 @@ namespace HorseEggs.Infrastructure.Initializers
             var adminUser = new AppUser
             {
                 Id = UserId,
-                FirstName = "John",
-                LastName = "Connor",
-                SurName = "Johnovych",
                 UserName = "ministry@email.com",
                 NormalizedUserName = "MINISTRY@EMAIL.COM",
                 Email = "ministry@email.com",
@@ -58,9 +55,6 @@ namespace HorseEggs.Infrastructure.Initializers
             var adminUser = new AppUser
             {
                 Id = UserId,
-                FirstName = "John",
-                LastName = "Connor",
-                SurName = "Johnovych",
                 UserName = "university@email.com",
                 NormalizedUserName = "UNIVERSITY@EMAIL.COM",
                 Email = "university@email.com",

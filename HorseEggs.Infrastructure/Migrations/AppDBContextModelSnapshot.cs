@@ -430,13 +430,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7b1bd789-61df-4137-a28b-72a146ebafe3",
+                            Id = "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         },
                         new
                         {
-                            Id = "ead3d48c-7f89-41ff-b44b-e1138e909b2d",
+                            Id = "f666255d-0ada-4062-8cef-40a24d6966f3",
                             Name = "University",
                             NormalizedName = "UNIVERSITY"
                         });
@@ -604,13 +604,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a3b914e2-8809-40fb-815a-19fec6301d9a",
-                            RoleId = "7b1bd789-61df-4137-a28b-72a146ebafe3"
+                            UserId = "a7f75778-f022-4ce0-be73-4f808bf3a28d",
+                            RoleId = "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b"
                         },
                         new
                         {
-                            UserId = "55507d97-e5d0-4de2-91b5-71b5ed6130e8",
-                            RoleId = "ead3d48c-7f89-41ff-b44b-e1138e909b2d"
+                            UserId = "f6d1e905-7055-4728-abaa-ad29c1c0a1df",
+                            RoleId = "f666255d-0ada-4062-8cef-40a24d6966f3"
                         });
                 });
 
@@ -637,60 +637,42 @@ namespace HorseEggs.Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("AppUser");
 
                     b.HasData(
                         new
                         {
-                            Id = "a3b914e2-8809-40fb-815a-19fec6301d9a",
+                            Id = "a7f75778-f022-4ce0-be73-4f808bf3a28d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a54d7cdd-ff37-41d2-8a54-b66ef6cb71ad",
+                            ConcurrencyStamp = "1da96490-44ee-493f-a082-df57922cc93f",
                             Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MINISTRY@EMAIL.COM",
                             NormalizedUserName = "MINISTRY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMZuAUTdTVpnxQ5rpKJowwzyL92OlzkocIU8PfEpNYM0mkWuqobMf9Hl/ogU2MTK6w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN9V6LoaUdWYXG6wkUGQtT+c7/3AivFdcw+CpYZ+Ny1RWLDkSkA5lsQCT/AGn9eS6w==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f38d2eed-f6bb-4047-b5f9-ee7ca7a6c199",
+                            SecurityStamp = "71299961-87a0-45ef-a217-eeb2440af6fa",
                             TwoFactorEnabled = false,
-                            UserName = "ministry@email.com",
-                            FirstName = "John",
-                            LastName = "Connor",
-                            SurName = "Johnovych"
+                            UserName = "ministry@email.com"
                         },
                         new
                         {
-                            Id = "55507d97-e5d0-4de2-91b5-71b5ed6130e8",
+                            Id = "f6d1e905-7055-4728-abaa-ad29c1c0a1df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc52c901-2ecf-4b8a-bfa8-4d1e4de7cc3e",
+                            ConcurrencyStamp = "e0f0d1a8-4c1b-41c1-a799-4ef5b8298d63",
                             Email = "university@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "UNIVERSITY@EMAIL.COM",
                             NormalizedUserName = "UNIVERSITY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB8ZjpblZRHwx6FPiQ6oso/GNvCo9JpiCM8K7pdrE9ECT1EukGBBrMD+c5OTj69SnQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEJUUnvStJJHvn/KCzl5vMKuOvQX0YZdF+cTSDbudVGWJReRgtVE37zAlAKU4D8qPA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f681e3ff-846a-4acf-bd5b-bef0f3a1acad",
+                            SecurityStamp = "5370135c-a3d1-47b5-b1c8-ff0a4cd72f00",
                             TwoFactorEnabled = false,
-                            UserName = "university@email.com",
-                            FirstName = "John",
-                            LastName = "Connor",
-                            SurName = "Johnovych"
+                            UserName = "university@email.com"
                         });
                 });
 
