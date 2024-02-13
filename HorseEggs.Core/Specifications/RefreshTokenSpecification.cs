@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace HorseEggs.Core.Entities.Specifications
+namespace HorseEggs.Core.Specifications
 {
     public static class RefreshTokenSpecification
     {

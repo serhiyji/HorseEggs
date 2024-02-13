@@ -1,4 +1,5 @@
-﻿using HorseEggs.Core.AutoMapper.User;
+﻿using HorseEggs.Core.AutoMapper.Competence;
+using HorseEggs.Core.AutoMapper.User;
 using HorseEggs.Core.Interfaces;
 using HorseEggs.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,11 +18,13 @@ namespace HorseEggs.Core
             services.AddTransient<UserService>();
             services.AddTransient<EmailService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<ICompetenceService, CompetenceService>();
         }
 
         public static void AddMapping(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AutoMapperUserProfile));
+            services.AddAutoMapper(typeof(AutoMapperCompetenceProfile));
         }
     }
 }

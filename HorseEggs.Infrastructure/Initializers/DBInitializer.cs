@@ -11,10 +11,12 @@ namespace HorseEggs.Infrastructure.Initializers
 {
     public static class DBInitializer
     {
+        private static string MinistryUserId;
         public static void SeedMinistry(this ModelBuilder modelBuilder)
         {
             var passwordHasher = new PasswordHasher<AppUser>();
             var UserId = Guid.NewGuid().ToString();
+            MinistryUserId = UserId;
             var RoleId = Guid.NewGuid().ToString();
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
@@ -70,6 +72,51 @@ namespace HorseEggs.Infrastructure.Initializers
                 RoleId = RoleId,
                 UserId = UserId
             });
+        }
+        public static void SeedCompetence(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Competence>().HasData(
+                new Competence()
+                {
+                    Id = 1,
+                    Code = "ЗК1",
+                    Name = "ЗК1",
+                    Description = "ЗК1",
+                    AppUserId = MinistryUserId
+                },
+                new Competence()
+                {
+                    Id = 2,
+                    Code = "ЗК2",
+                    Name = "ЗК2",
+                    Description = "ЗК2",
+                    AppUserId = MinistryUserId
+                },
+                new Competence()
+                {
+                    Id = 3,
+                    Code = "ЗК3",
+                    Name = "ЗК3",
+                    Description = "ЗК3",
+                    AppUserId = MinistryUserId
+                },
+                new Competence()
+                {
+                    Id = 4,
+                    Code = "ЗК4",
+                    Name = "ЗК4",
+                    Description = "ЗК4",
+                    AppUserId = MinistryUserId
+                },
+                new Competence()
+                {
+                    Id = 5,
+                    Code = "ЗК5",
+                    Name = "ЗК5",
+                    Description = "ЗК5",
+                    AppUserId = MinistryUserId
+                }
+            );
         }
     }
 }

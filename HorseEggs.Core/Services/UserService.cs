@@ -91,5 +91,14 @@ namespace HorseEggs.Core.Services
             return new ServiceResponse(false, "Something went wrong", errors: result.Errors.Select(e => e.Description));
         }
         #endregion
+
+        public async Task DeleteAllRefreshTokenByUserIdAsync(string userId)
+        {
+            IEnumerable<RefreshToken> refreshTokens = await _jwtService.GetByUserIdAsync(userId);
+            foreach (RefreshToken refreshToken in refreshTokens)
+            {
+                await _jwtService.Delete(refreshToken);
+            }
+        }
     }
 }

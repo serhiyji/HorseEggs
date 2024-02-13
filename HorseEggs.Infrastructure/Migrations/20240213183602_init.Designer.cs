@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HorseEggs.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240212163000_init")]
+    [Migration("20240213183602_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -41,9 +41,6 @@ namespace HorseEggs.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompetenceType")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -57,6 +54,48 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Competence");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppUserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            Code = "ЗК1",
+                            Description = "ЗК1",
+                            Name = "ЗК1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AppUserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            Code = "ЗК2",
+                            Description = "ЗК2",
+                            Name = "ЗК2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AppUserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            Code = "ЗК3",
+                            Description = "ЗК3",
+                            Name = "ЗК3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AppUserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            Code = "ЗК4",
+                            Description = "ЗК4",
+                            Name = "ЗК4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AppUserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            Code = "ЗК5",
+                            Description = "ЗК5",
+                            Name = "ЗК5"
+                        });
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Competence_EP", b =>
@@ -116,9 +155,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EducationalComponentType")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -262,9 +298,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProgramLearningOutcomesType")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -433,13 +466,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b",
+                            Id = "5df0cfbb-c7f0-4646-aa53-4addefad5583",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         },
                         new
                         {
-                            Id = "f666255d-0ada-4062-8cef-40a24d6966f3",
+                            Id = "ffede8dc-9504-4203-bd96-91435208a3bc",
                             Name = "University",
                             NormalizedName = "UNIVERSITY"
                         });
@@ -607,13 +640,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a7f75778-f022-4ce0-be73-4f808bf3a28d",
-                            RoleId = "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b"
+                            UserId = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
+                            RoleId = "5df0cfbb-c7f0-4646-aa53-4addefad5583"
                         },
                         new
                         {
-                            UserId = "f6d1e905-7055-4728-abaa-ad29c1c0a1df",
-                            RoleId = "f666255d-0ada-4062-8cef-40a24d6966f3"
+                            UserId = "f717f2b7-624c-402e-acdf-9fa7c80db385",
+                            RoleId = "ffede8dc-9504-4203-bd96-91435208a3bc"
                         });
                 });
 
@@ -645,35 +678,35 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a7f75778-f022-4ce0-be73-4f808bf3a28d",
+                            Id = "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1da96490-44ee-493f-a082-df57922cc93f",
+                            ConcurrencyStamp = "421dcfaf-b559-49ba-bd39-2932533ee624",
                             Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MINISTRY@EMAIL.COM",
                             NormalizedUserName = "MINISTRY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN9V6LoaUdWYXG6wkUGQtT+c7/3AivFdcw+CpYZ+Ny1RWLDkSkA5lsQCT/AGn9eS6w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPGSvCXtkQQ+km5grGXQK6HnzskURlp+xD5HlqcUsA4MmpXHy/LIKSAFnSEYzFN1kA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "71299961-87a0-45ef-a217-eeb2440af6fa",
+                            SecurityStamp = "52eedd58-d0c9-4ccb-96b8-271cdc8debde",
                             TwoFactorEnabled = false,
                             UserName = "ministry@email.com"
                         },
                         new
                         {
-                            Id = "f6d1e905-7055-4728-abaa-ad29c1c0a1df",
+                            Id = "f717f2b7-624c-402e-acdf-9fa7c80db385",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0f0d1a8-4c1b-41c1-a799-4ef5b8298d63",
+                            ConcurrencyStamp = "5b19e364-9b05-4493-8035-30c15be9a4a0",
                             Email = "university@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "UNIVERSITY@EMAIL.COM",
                             NormalizedUserName = "UNIVERSITY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEJUUnvStJJHvn/KCzl5vMKuOvQX0YZdF+cTSDbudVGWJReRgtVE37zAlAKU4D8qPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKzsLfGhvYzOBcP9Oys51Z7wKcGTXKG0fHdbey+dkRdd3t1ePdZRHGAl91lPhhDYuQ==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "5370135c-a3d1-47b5-b1c8-ff0a4cd72f00",
+                            SecurityStamp = "d3231f99-f111-4e7e-b038-b5638bb541e2",
                             TwoFactorEnabled = false,
                             UserName = "university@email.com"
                         });

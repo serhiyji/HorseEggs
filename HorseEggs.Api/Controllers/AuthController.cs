@@ -47,5 +47,12 @@ namespace HorseEggs.Api.Controllers
             }
             return Ok(validationResult.Errors.FirstOrDefault());
         }
+        [HttpGet("logout")]
+        public async Task<IActionResult> LogOut(string userId)
+        {
+            await _userService.DeleteAllRefreshTokenByUserIdAsync(userId);
+            ServiceResponse res = await _userService.SignOutAsync();
+            return Ok(res);
+        }
     }
 }

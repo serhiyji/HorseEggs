@@ -60,8 +60,7 @@ namespace HorseEggs.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EducationalComponentType = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -197,7 +196,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompetenceType = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -220,7 +218,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProgramLearningOutcomesType = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -509,8 +506,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b", null, "Ministry", "MINISTRY" },
-                    { "f666255d-0ada-4062-8cef-40a24d6966f3", null, "University", "UNIVERSITY" }
+                    { "5df0cfbb-c7f0-4646-aa53-4addefad5583", null, "Ministry", "MINISTRY" },
+                    { "ffede8dc-9504-4203-bd96-91435208a3bc", null, "University", "UNIVERSITY" }
                 });
 
             migrationBuilder.InsertData(
@@ -518,8 +515,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a7f75778-f022-4ce0-be73-4f808bf3a28d", 0, "1da96490-44ee-493f-a082-df57922cc93f", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEN9V6LoaUdWYXG6wkUGQtT+c7/3AivFdcw+CpYZ+Ny1RWLDkSkA5lsQCT/AGn9eS6w==", "+xx(xxx)xxx-xx-xx", true, "71299961-87a0-45ef-a217-eeb2440af6fa", false, "ministry@email.com" },
-                    { "f6d1e905-7055-4728-abaa-ad29c1c0a1df", 0, "e0f0d1a8-4c1b-41c1-a799-4ef5b8298d63", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEEJUUnvStJJHvn/KCzl5vMKuOvQX0YZdF+cTSDbudVGWJReRgtVE37zAlAKU4D8qPA==", "+xx(xxx)xxx-xx-xx", true, "5370135c-a3d1-47b5-b1c8-ff0a4cd72f00", false, "university@email.com" }
+                    { "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", 0, "421dcfaf-b559-49ba-bd39-2932533ee624", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEPGSvCXtkQQ+km5grGXQK6HnzskURlp+xD5HlqcUsA4MmpXHy/LIKSAFnSEYzFN1kA==", "+xx(xxx)xxx-xx-xx", true, "52eedd58-d0c9-4ccb-96b8-271cdc8debde", false, "ministry@email.com" },
+                    { "f717f2b7-624c-402e-acdf-9fa7c80db385", 0, "5b19e364-9b05-4493-8035-30c15be9a4a0", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEKzsLfGhvYzOBcP9Oys51Z7wKcGTXKG0fHdbey+dkRdd3t1ePdZRHGAl91lPhhDYuQ==", "+xx(xxx)xxx-xx-xx", true, "d3231f99-f111-4e7e-b038-b5638bb541e2", false, "university@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -527,8 +524,20 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "8b8f482d-9c38-43a0-a59f-8df1ae1eda3b", "a7f75778-f022-4ce0-be73-4f808bf3a28d" },
-                    { "f666255d-0ada-4062-8cef-40a24d6966f3", "f6d1e905-7055-4728-abaa-ad29c1c0a1df" }
+                    { "5df0cfbb-c7f0-4646-aa53-4addefad5583", "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf" },
+                    { "ffede8dc-9504-4203-bd96-91435208a3bc", "f717f2b7-624c-402e-acdf-9fa7c80db385" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Competence",
+                columns: new[] { "Id", "AppUserId", "Code", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК1", "ЗК1", "ЗК1" },
+                    { 2, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК2", "ЗК2", "ЗК2" },
+                    { 3, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК3", "ЗК3", "ЗК3" },
+                    { 4, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК4", "ЗК4", "ЗК4" },
+                    { 5, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК5", "ЗК5", "ЗК5" }
                 });
 
             migrationBuilder.CreateIndex(
