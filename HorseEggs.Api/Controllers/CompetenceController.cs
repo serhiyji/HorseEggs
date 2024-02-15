@@ -57,7 +57,7 @@ namespace HorseEggs.Api.Controllers
             return BadRequest(validationResult.Errors);
         }
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromBody]int id)
         {
             await _competenceService.Delete(id);
             return Ok();
