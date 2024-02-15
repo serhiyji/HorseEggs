@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopNewsApi.Core.Services;
 
 namespace HorseEggs.Core.Interfaces
 {
@@ -12,7 +13,7 @@ namespace HorseEggs.Core.Interfaces
         Task Create(CreateCompetenceDto competenceDto);
         Task Update(UpdateCompetenceDto competenceDto);
         Task Delete(int id);
-        Task<List<CompetenceDto>> GetAll();
+        Task<ServiceResponse<List<CompetenceDto>, object>> GetAll();
         Task<List<CompetenceDto>> GetByUserId(string UserId);
         Task<CompetenceDto?> Get(int id);
     }

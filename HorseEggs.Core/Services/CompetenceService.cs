@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopNewsApi.Core.Services;
 
 namespace HorseEggs.Core.Services
 {
@@ -43,10 +44,10 @@ namespace HorseEggs.Core.Services
             await _competenceRepo.Save();
         }
 
-        public async Task<List<CompetenceDto>> GetAll()
+        public async Task<ServiceResponse<List<CompetenceDto>, object>> GetAll()
         {
             var result = await _competenceRepo.GetAll();
-            return _mapper.Map<List<CompetenceDto>>(result);
+            return new ServiceResponse<List<CompetenceDto>, object>(success:true,message:"", payload: _mapper.Map<List<CompetenceDto>>(result));
         }
 
         public async Task<List<CompetenceDto>> GetByUserId(string UserId)
