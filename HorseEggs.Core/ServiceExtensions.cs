@@ -1,4 +1,5 @@
 ﻿using HorseEggs.Core.AutoMapper.Competence;
+using HorseEggs.Core.AutoMapper.ProgramLearningOutcomes;
 using HorseEggs.Core.AutoMapper.User;
 using HorseEggs.Core.Interfaces;
 using HorseEggs.Core.Services;
@@ -19,12 +20,14 @@ namespace HorseEggs.Core
             services.AddTransient<EmailService>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<ICompetenceService, CompetenceService>();
+            services.AddScoped<IProgramLearningOutcomesService, ProgramLearningOutcomesService>();
         }
 
         public static void AddMapping(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AutoMapperUserProfile));
             services.AddAutoMapper(typeof(AutoMapperCompetenceProfile));
+            services.AddAutoMapper(typeof(AutoMapperProgramLearningOutcomesProfile));
         }
     }
 }

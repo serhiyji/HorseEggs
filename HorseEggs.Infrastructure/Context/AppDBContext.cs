@@ -143,6 +143,7 @@ namespace HorseEggs.Infrastructure.Context
             modelBuilder.SeedMinistry();
             modelBuilder.SeedUniversity();
             modelBuilder.SeedCompetence();
+            modelBuilder.SeedProgramLearningOutcomes();
         }
     }
 }

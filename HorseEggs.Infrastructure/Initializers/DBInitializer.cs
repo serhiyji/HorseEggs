@@ -118,5 +118,50 @@ namespace HorseEggs.Infrastructure.Initializers
                 }
             );
         }
+        public static void SeedProgramLearningOutcomes(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProgramLearningOutcomes>().HasData(
+                new ProgramLearningOutcomes()
+                {
+                    Id = 1,
+                    Code = "ПРН1",
+                    Name = "ПРН1",
+                    Description = "ПРН1",
+                    AppUserId = MinistryUserId
+                },
+                new ProgramLearningOutcomes()
+                {
+                    Id = 2,
+                    Code = "ПРН2",
+                    Name = "ПРН2",
+                    Description = "ПРН2",
+                    AppUserId = MinistryUserId
+                },
+                new ProgramLearningOutcomes()
+                {
+                    Id = 3,
+                    Code = "ПРН3",
+                    Name = "ПРН3",
+                    Description = "ПРН3",
+                    AppUserId = MinistryUserId
+                },
+                new ProgramLearningOutcomes()
+                {
+                    Id = 4,
+                    Code = "ПРН4",
+                    Name = "ПРН4",
+                    Description = "ПРН4",
+                    AppUserId = MinistryUserId
+                },
+                new ProgramLearningOutcomes()
+                {
+                    Id = 5,
+                    Code = "ПРН5",
+                    Name = "ПРН5",
+                    Description = "ПРН5",
+                    AppUserId = MinistryUserId
+                }
+            );
+        }
     }
 }

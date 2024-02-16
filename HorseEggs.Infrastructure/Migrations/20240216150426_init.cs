@@ -506,8 +506,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5df0cfbb-c7f0-4646-aa53-4addefad5583", null, "Ministry", "MINISTRY" },
-                    { "ffede8dc-9504-4203-bd96-91435208a3bc", null, "University", "UNIVERSITY" }
+                    { "2ab67501-8f11-40c6-a960-59a63f54f512", null, "Ministry", "MINISTRY" },
+                    { "d50427f2-d407-444d-93d4-98f6ddc04816", null, "University", "UNIVERSITY" }
                 });
 
             migrationBuilder.InsertData(
@@ -515,8 +515,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", 0, "421dcfaf-b559-49ba-bd39-2932533ee624", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEPGSvCXtkQQ+km5grGXQK6HnzskURlp+xD5HlqcUsA4MmpXHy/LIKSAFnSEYzFN1kA==", "+xx(xxx)xxx-xx-xx", true, "52eedd58-d0c9-4ccb-96b8-271cdc8debde", false, "ministry@email.com" },
-                    { "f717f2b7-624c-402e-acdf-9fa7c80db385", 0, "5b19e364-9b05-4493-8035-30c15be9a4a0", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEKzsLfGhvYzOBcP9Oys51Z7wKcGTXKG0fHdbey+dkRdd3t1ePdZRHGAl91lPhhDYuQ==", "+xx(xxx)xxx-xx-xx", true, "d3231f99-f111-4e7e-b038-b5638bb541e2", false, "university@email.com" }
+                    { "7be85b42-1cad-4d3b-ad07-9ab7734dee23", 0, "998e1fb5-994c-4bc2-b52c-b481a0be5406", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEF1dIHvYpECWYXj4EAttrL2AKKfZ9z9etOFN3+dhqvxVToEOziQ/KEWdWkBqNTGKhw==", "+xx(xxx)xxx-xx-xx", true, "073534ab-f9b2-4020-a2ef-b87f10314a4d", false, "university@email.com" },
+                    { "dcc681a5-039b-4fde-b5cf-a824eb21ff25", 0, "861b9e0e-ca6e-49f2-8143-2f449fbad095", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEHM0JzFm4Tzf8CJJTKjsSFyu2fI/CWFsPjQCEe3Jsomy21Zn5TH1RiLBor5IR90rrw==", "+xx(xxx)xxx-xx-xx", true, "641f70dd-1bd7-4422-b28d-7924c5201b90", false, "ministry@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -524,8 +524,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "5df0cfbb-c7f0-4646-aa53-4addefad5583", "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf" },
-                    { "ffede8dc-9504-4203-bd96-91435208a3bc", "f717f2b7-624c-402e-acdf-9fa7c80db385" }
+                    { "d50427f2-d407-444d-93d4-98f6ddc04816", "7be85b42-1cad-4d3b-ad07-9ab7734dee23" },
+                    { "2ab67501-8f11-40c6-a960-59a63f54f512", "dcc681a5-039b-4fde-b5cf-a824eb21ff25" }
                 });
 
             migrationBuilder.InsertData(
@@ -533,11 +533,23 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AppUserId", "Code", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК1", "ЗК1", "ЗК1" },
-                    { 2, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК2", "ЗК2", "ЗК2" },
-                    { 3, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК3", "ЗК3", "ЗК3" },
-                    { 4, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК4", "ЗК4", "ЗК4" },
-                    { 5, "b0ace8ea-1b6f-4c87-96f1-3cb212aa11cf", "ЗК5", "ЗК5", "ЗК5" }
+                    { 1, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ЗК1", "ЗК1", "ЗК1" },
+                    { 2, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ЗК2", "ЗК2", "ЗК2" },
+                    { 3, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ЗК3", "ЗК3", "ЗК3" },
+                    { 4, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ЗК4", "ЗК4", "ЗК4" },
+                    { 5, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ЗК5", "ЗК5", "ЗК5" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProgramLearningOutcomes",
+                columns: new[] { "Id", "AppUserId", "Code", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ПРН1", "ПРН1", "ПРН1" },
+                    { 2, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ПРН2", "ПРН2", "ПРН2" },
+                    { 3, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ПРН3", "ПРН3", "ПРН3" },
+                    { 4, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ПРН4", "ПРН4", "ПРН4" },
+                    { 5, "dcc681a5-039b-4fde-b5cf-a824eb21ff25", "ПРН5", "ПРН5", "ПРН5" }
                 });
 
             migrationBuilder.CreateIndex(
