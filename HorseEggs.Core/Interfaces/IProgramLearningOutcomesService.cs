@@ -14,7 +14,7 @@ namespace HorseEggs.Core.Interfaces
         Task Update(UpdateProgramLearningOutcomesDto competenceDto);
         Task Delete(int id);
         Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetAll();
-        Task<List<ProgramLearningOutcomesDto>> GetByUserId(string UserId);
+        Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetByUserId(string UserId);
         Task<ProgramLearningOutcomesDto?> Get(int id);
     }
 }

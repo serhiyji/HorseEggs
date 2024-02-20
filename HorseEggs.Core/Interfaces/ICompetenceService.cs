@@ -14,7 +14,7 @@ namespace HorseEggs.Core.Interfaces
         Task Update(UpdateCompetenceDto competenceDto);
         Task Delete(int id);
         Task<ServiceResponse<List<CompetenceDto>, object>> GetAll();
-        Task<List<CompetenceDto>> GetByUserId(string UserId);
+        Task<ServiceResponse<List<CompetenceDto>, object>> GetByUserId(string UserId);
         Task<CompetenceDto?> Get(int id);
     }
 }

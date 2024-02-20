@@ -25,7 +25,6 @@ namespace HorseEggs.Core.Services
         {
             await _programLearningOutcomesRepo.Insert(_mapper.Map<CreateProgramLearningOutcomesDto, ProgramLearningOutcomes>(createProgramLearningOutcomesDto));
             await _programLearningOutcomesRepo.Save();
-
         }
 
         public async Task<ProgramLearningOutcomesDto?> Get(int id)
@@ -50,10 +49,10 @@ namespace HorseEggs.Core.Services
             return new ServiceResponse<List<ProgramLearningOutcomesDto>, object>(success: true, message: "", payload: _mapper.Map<List<ProgramLearningOutcomesDto>>(result));
         }
 
-        public async Task<List<ProgramLearningOutcomesDto>> GetByUserId(string UserId)
+        public async Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetByUserId(string UserId)
         {
             var result = await _programLearningOutcomesRepo.GetListBySpec(new ProgramLearningOutcomesSpecification.GetByUserId(UserId));
-            return _mapper.Map<List<ProgramLearningOutcomesDto>>(result);
+            return new ServiceResponse<List<ProgramLearningOutcomesDto>, object>(success: true, message: "", payload: _mapper.Map<List<ProgramLearningOutcomesDto>>(result));
         }
 
         public async Task Update(UpdateProgramLearningOutcomesDto updateProgramLearningOutcomesDto)

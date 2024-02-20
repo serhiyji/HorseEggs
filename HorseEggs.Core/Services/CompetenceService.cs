@@ -50,10 +50,10 @@ namespace HorseEggs.Core.Services
             return new ServiceResponse<List<CompetenceDto>, object>(success:true,message:"", payload: _mapper.Map<List<CompetenceDto>>(result));
         }
 
-        public async Task<List<CompetenceDto>> GetByUserId(string UserId)
+        public async Task<ServiceResponse<List<CompetenceDto>, object>> GetByUserId(string UserId)
         {
             var result = await _competenceRepo.GetListBySpec(new CompetenceSpecification.GetByUserId(UserId));
-            return _mapper.Map<List<CompetenceDto>>(result);
+            return new ServiceResponse<List<CompetenceDto>, object>(true, "", payload: _mapper.Map<List<CompetenceDto>>(result));
         }
 
         public async Task Update(UpdateCompetenceDto competenceDto)

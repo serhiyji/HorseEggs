@@ -33,7 +33,7 @@ namespace HorseEggs.Api.Controllers
             return Ok(await _competenceService.Get(id));
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateCompetenceDto model)
+        public async Task<IActionResult> Create([FromBody] CreateCompetenceDto model)
         {
             CreateCompetenceValidation validator = new CreateCompetenceValidation();
             var validationResult = await validator.ValidateAsync(model);
@@ -45,7 +45,7 @@ namespace HorseEggs.Api.Controllers
             return BadRequest(validationResult.Errors);
         }
         [HttpPost("update")]
-        public async Task<IActionResult> Update(UpdateCompetenceDto model)
+        public async Task<IActionResult> Update([FromBody] UpdateCompetenceDto model)
         {
             UpdateCompetenceValidation validator = new UpdateCompetenceValidation();
             var validationResult = await validator.ValidateAsync(model);

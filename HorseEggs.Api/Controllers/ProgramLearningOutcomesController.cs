@@ -36,7 +36,7 @@ namespace HorseEggs.Api.Controllers
             return Ok(await _programLearningOutcomesService.Get(id));
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create(CreateProgramLearningOutcomesDto model)
+        public async Task<IActionResult> Create([FromBody] CreateProgramLearningOutcomesDto model)
         {
             CreateProgramLearningOutcomesValidation validator = new CreateProgramLearningOutcomesValidation();
             var validationResult = await validator.ValidateAsync(model);
@@ -48,7 +48,7 @@ namespace HorseEggs.Api.Controllers
             return BadRequest(validationResult.Errors);
         }
         [HttpPost("update")]
-        public async Task<IActionResult> Update(UpdateProgramLearningOutcomesDto model)
+        public async Task<IActionResult> Update([FromBody] UpdateProgramLearningOutcomesDto model)
         {
             UpdateProgramLearningOutcomesValidation validator = new UpdateProgramLearningOutcomesValidation();
             var validationResult = await validator.ValidateAsync(model);
