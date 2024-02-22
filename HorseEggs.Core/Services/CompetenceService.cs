@@ -2,13 +2,13 @@
 using HorseEggs.Core.DTOs.Competence;
 using HorseEggs.Core.Entities;
 using HorseEggs.Core.Interfaces;
+using HorseEggs.Core.Responses;
 using HorseEggs.Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TopNewsApi.Core.Services;
 
 namespace HorseEggs.Core.Services
 {
@@ -44,16 +44,20 @@ namespace HorseEggs.Core.Services
             await _competenceRepo.Save();
         }
 
-        public async Task<ServiceResponse<List<CompetenceDto>, object>> GetAll()
+        public async Task<PaginationResponse<List<CompetenceDto>, object>> GetAll(int page, int pageSize, string userId)
         {
-            var result = await _competenceRepo.GetAll();
-            return new ServiceResponse<List<CompetenceDto>, object>(success:true,message:"", payload: _mapper.Map<List<CompetenceDto>>(result));
+            var result = await _competenceRepo.GetListBySpec(new CompetenceSpecification.GetByPagination(page, pageSize, userId));
+            var res = await _competenceRepo.GetListBySpec(new CompetenceSpecification.GetByUserId(userId));
+            return new PaginationResponse<List<CompetenceDto>, object>(
+                    success:true, message:"", payload: _mapper.Map<List<CompetenceDto>>(result),
+                    pageNumber: page, pageSize: pageSize, totalCount: res.Count()
+                );
         }
 
-        public async Task<ServiceResponse<List<CompetenceDto>, object>> GetByUserId(string UserId)
+        public async Task<PaginationResponse<List<CompetenceDto>, object>> GetByUserId(string UserId)
         {
             var result = await _competenceRepo.GetListBySpec(new CompetenceSpecification.GetByUserId(UserId));
-            return new ServiceResponse<List<CompetenceDto>, object>(true, "", payload: _mapper.Map<List<CompetenceDto>>(result));
+            return new PaginationResponse<List<CompetenceDto>, object>(true, "", payload: _mapper.Map<List<CompetenceDto>>(result));
         }
 
         public async Task Update(UpdateCompetenceDto competenceDto)

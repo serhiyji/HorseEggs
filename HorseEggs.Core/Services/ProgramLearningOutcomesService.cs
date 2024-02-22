@@ -2,13 +2,13 @@
 using HorseEggs.Core.DTOs.ProgramLearningOutcomes;
 using HorseEggs.Core.Entities;
 using HorseEggs.Core.Interfaces;
+using HorseEggs.Core.Responses;
 using HorseEggs.Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TopNewsApi.Core.Services;
 
 namespace HorseEggs.Core.Services
 {
@@ -43,9 +43,9 @@ namespace HorseEggs.Core.Services
             await _programLearningOutcomesRepo.Save();
         }
 
-        public async Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetAll()
+        public async Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetAll(int page = 1, int pageSize = 10, string userId = null)
         {
-            var result = await _programLearningOutcomesRepo.GetAll();
+            var result = await _programLearningOutcomesRepo.GetListBySpec(new ProgramLearningOutcomesSpecification.GetByPagination(page, pageSize, userId));
             return new ServiceResponse<List<ProgramLearningOutcomesDto>, object>(success: true, message: "", payload: _mapper.Map<List<ProgramLearningOutcomesDto>>(result));
         }
 

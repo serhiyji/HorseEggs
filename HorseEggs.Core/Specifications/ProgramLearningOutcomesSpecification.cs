@@ -18,5 +18,20 @@ namespace HorseEggs.Core.Specifications
                 Query.Where(c => c.AppUserId == UserId);
             }
         }
+
+        public class GetByPagination : Specification<ProgramLearningOutcomes>
+        {
+            public GetByPagination(int page, int pageSize, string userId = null)
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    Query.Skip((page - 1) * pageSize).Take(pageSize);
+                }
+                else
+                {
+                    Query.Where(c => c.AppUserId == userId).Skip((page - 1) * pageSize).Take(pageSize);
+                }
+            }
+        }
     }
 }

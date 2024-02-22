@@ -9,8 +9,8 @@ using HorseEggs.Core.DTOs.User;
 using HorseEggs.Core.Entities.Token;
 using HorseEggs.Core.Entities;
 using HorseEggs.Core.Interfaces;
-using TopNewsApi.Core.Services;
 using static HorseEggs.Core.Services.JwtService;
+using HorseEggs.Core.Responses;
 
 namespace HorseEggs.Core.Services
 {

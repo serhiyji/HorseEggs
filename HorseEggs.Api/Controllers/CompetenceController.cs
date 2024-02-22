@@ -18,9 +18,9 @@ namespace HorseEggs.Api.Controllers
             _competenceService = competenceService;
         }
         [HttpGet("getall")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page, int pageSize, string userId)
         {
-            return Ok(await _competenceService.GetAll());
+            return Ok(await _competenceService.GetAll(page, pageSize, userId));
         }
         [HttpGet("getbyuserid")]
         public async Task<IActionResult> GetByUserId(string userid)

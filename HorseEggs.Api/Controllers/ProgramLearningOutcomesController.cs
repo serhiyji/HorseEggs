@@ -21,9 +21,9 @@ namespace HorseEggs.Api.Controllers
             _programLearningOutcomesService = programLearningOutcomesService;
         }
         [HttpGet("getall")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page = 1, int pageSize = 10, string userId = null)
         {
-            return Ok(await _programLearningOutcomesService.GetAll());
+            return Ok(await _programLearningOutcomesService.GetAll(page, pageSize, userId));
         }
         [HttpGet("getbyuserid")]
         public async Task<IActionResult> GetByUserId(string userid)

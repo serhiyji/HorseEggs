@@ -1,10 +1,10 @@
 ﻿using HorseEggs.Core.DTOs.User;
+using HorseEggs.Core.Responses;
 using HorseEggs.Core.Services;
 using HorseEggs.Core.Validation.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TopNewsApi.Core.Services;
 
 namespace HorseEggs.Api.Controllers
 {

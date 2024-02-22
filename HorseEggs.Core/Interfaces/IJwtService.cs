@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TopNewsApi.Core.Services;
 using static HorseEggs.Core.Services.JwtService;
+using HorseEggs.Core.Responses;
 
 namespace HorseEggs.Core.Interfaces
 {

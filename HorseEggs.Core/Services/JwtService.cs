@@ -11,9 +11,9 @@ using HorseEggs.Core.Entities.Token;
 using HorseEggs.Core.Interfaces;
 using HorseEggs.Core.Entities;
 using Microsoft.IdentityModel.Tokens;
-using TopNewsApi.Core.Services;
 using System.IdentityModel.Tokens.Jwt;
 using HorseEggs.Core.Specifications;
+using HorseEggs.Core.Responses;
 
 namespace HorseEggs.Core.Services
 {
