@@ -20,7 +20,7 @@ namespace HorseEggs.Core.Specifications
 
         public class GetByPagination : Specification<Competence>
         {
-            public GetByPagination(int page, int pageSize, string userId = null)
+            public GetByPagination(int page, int pageSize, string userId)
             {
                 if(string.IsNullOrEmpty(userId))
                 {

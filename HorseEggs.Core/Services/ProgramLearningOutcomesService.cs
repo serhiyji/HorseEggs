@@ -43,10 +43,14 @@ namespace HorseEggs.Core.Services
             await _programLearningOutcomesRepo.Save();
         }
 
-        public async Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetAll(int page = 1, int pageSize = 10, string userId = null)
+        public async Task<PaginationResponse<List<ProgramLearningOutcomesDto>, object>> GetAll(int page = 1, int pageSize = 10, string userId = null)
         {
             var result = await _programLearningOutcomesRepo.GetListBySpec(new ProgramLearningOutcomesSpecification.GetByPagination(page, pageSize, userId));
-            return new ServiceResponse<List<ProgramLearningOutcomesDto>, object>(success: true, message: "", payload: _mapper.Map<List<ProgramLearningOutcomesDto>>(result));
+            var res = await _programLearningOutcomesRepo.GetListBySpec(new ProgramLearningOutcomesSpecification.GetByUserId(userId));
+            return new PaginationResponse<List<ProgramLearningOutcomesDto>, object>(
+                    success: true, message: "", payload: _mapper.Map<List<ProgramLearningOutcomesDto>>(result),
+                    pageNumber: page, pageSize: pageSize, totalCount: res.Count()
+                );
         }
 
         public async Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetByUserId(string UserId)

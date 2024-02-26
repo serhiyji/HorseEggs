@@ -13,7 +13,7 @@ namespace HorseEggs.Core.Interfaces
         Task Create(CreateProgramLearningOutcomesDto competenceDto);
         Task Update(UpdateProgramLearningOutcomesDto competenceDto);
         Task Delete(int id);
-        Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetAll(int page = 1, int pageSize = 10, string userId = null);
+        Task<PaginationResponse<List<ProgramLearningOutcomesDto>, object>> GetAll(int page = 1, int pageSize = 10, string userId = null);
         Task<ServiceResponse<List<ProgramLearningOutcomesDto>, object>> GetByUserId(string UserId);
         Task<ProgramLearningOutcomesDto?> Get(int id);
     }
