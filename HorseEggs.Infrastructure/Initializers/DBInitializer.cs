@@ -163,5 +163,41 @@ namespace HorseEggs.Infrastructure.Initializers
                 }
             );
         }
+
+        public static void SeedSpecialty(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Specialty>().HasData(
+                new Specialty()
+                {
+                    Id = 1,
+                    Code = "121",
+                    Name = "Інженерія програмного забезпечення",
+                },
+                new Specialty()
+                {
+                    Id = 2,
+                    Code = "122",
+                    Name = "Комп’ютерні науки",
+                },
+                new Specialty()
+                {
+                    Id = 3,
+                    Code = "123",
+                    Name = "Комп’ютерна інженерія",
+                },
+                new Specialty()
+                {
+                    Id = 4,
+                    Code = "124",
+                    Name = "Системний аналіз",
+                },
+                new Specialty()
+                {
+                    Id = 5,
+                    Code = "125",
+                    Name = "Кібербезпека",
+                }
+            );
+        }
     }
 }

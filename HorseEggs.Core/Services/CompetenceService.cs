@@ -25,7 +25,6 @@ namespace HorseEggs.Core.Services
         {
             await _competenceRepo.Insert(_mapper.Map<CreateCompetenceDto, Competence>(competenceDto));
             await _competenceRepo.Save();
-
         }
 
         public async Task<CompetenceDto?> Get(int id)
