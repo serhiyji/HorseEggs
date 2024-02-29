@@ -145,6 +145,7 @@ namespace HorseEggs.Infrastructure.Context
             modelBuilder.SeedCompetence();
             modelBuilder.SeedProgramLearningOutcomes();
             modelBuilder.SeedSpecialty();
+            modelBuilder.SeedStandartEducationalProgram();
         }
     }
 }

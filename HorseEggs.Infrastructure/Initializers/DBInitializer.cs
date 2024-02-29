@@ -199,5 +199,46 @@ namespace HorseEggs.Infrastructure.Initializers
                 }
             );
         }
+
+        public static void SeedStandartEducationalProgram(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StandartEducationalProgram>().HasData(
+                new StandartEducationalProgram()
+                {
+                    Id = 1,
+                    Year = 1,
+                    Name = "1",
+                    SpecialtyId = 1,
+                },
+                new StandartEducationalProgram()
+                {
+                    Id = 2,
+                    Year = 2,
+                    Name = "2",
+                    SpecialtyId = 2,
+                },
+                new StandartEducationalProgram()
+                {
+                    Id = 3,
+                    Year = 3,
+                    Name = "3",
+                    SpecialtyId = 3,
+                },
+                new StandartEducationalProgram()
+                {
+                    Id = 4,
+                    Year = 4,
+                    Name = "4",
+                    SpecialtyId = 4,
+                },
+                new StandartEducationalProgram()
+                {
+                    Id = 5,
+                    Year = 5,
+                    Name = "5",
+                    SpecialtyId = 5,
+                }
+            );
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HorseEggs.Core.AutoMapper.Competence;
 using HorseEggs.Core.AutoMapper.ProgramLearningOutcomes;
 using HorseEggs.Core.AutoMapper.Specialty;
+using HorseEggs.Core.AutoMapper.StandartEducationalProgram;
 using HorseEggs.Core.AutoMapper.User;
 using HorseEggs.Core.Interfaces;
 using HorseEggs.Core.Services;
@@ -23,6 +24,7 @@ namespace HorseEggs.Core
             services.AddScoped<ICompetenceService, CompetenceService>();
             services.AddScoped<IProgramLearningOutcomesService, ProgramLearningOutcomesService>();
             services.AddScoped<ISpecialtyService, SpecialtyService>();
+            services.AddScoped<IStandartEducationalProgramService, StandartEducationalProgramService>();
         }
 
         public static void AddMapping(this IServiceCollection services)
@@ -31,6 +33,7 @@ namespace HorseEggs.Core
             services.AddAutoMapper(typeof(AutoMapperCompetenceProfile));
             services.AddAutoMapper(typeof(AutoMapperProgramLearningOutcomesProfile));
             services.AddAutoMapper(typeof(AutoMapperSpecialtyProfile));
+            services.AddAutoMapper(typeof(AutoMapperStandartEducationalProgramProfile));
         }
     }
 }

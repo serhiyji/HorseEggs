@@ -59,7 +59,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ЗК1",
                             Description = "ЗК1",
                             Name = "ЗК1"
@@ -67,7 +67,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ЗК2",
                             Description = "ЗК2",
                             Name = "ЗК2"
@@ -75,7 +75,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ЗК3",
                             Description = "ЗК3",
                             Name = "ЗК3"
@@ -83,7 +83,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ЗК4",
                             Description = "ЗК4",
                             Name = "ЗК4"
@@ -91,7 +91,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ЗК5",
                             Description = "ЗК5",
                             Name = "ЗК5"
@@ -312,7 +312,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ПРН1",
                             Description = "ПРН1",
                             Name = "ПРН1"
@@ -320,7 +320,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ПРН2",
                             Description = "ПРН2",
                             Name = "ПРН2"
@@ -328,7 +328,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ПРН3",
                             Description = "ПРН3",
                             Name = "ПРН3"
@@ -336,7 +336,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ПРН4",
                             Description = "ПРН4",
                             Name = "ПРН4"
@@ -344,7 +344,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             Code = "ПРН5",
                             Description = "ПРН5",
                             Name = "ПРН5"
@@ -462,7 +462,8 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("SpecialtyId")
                         .HasColumnType("int");
@@ -475,6 +476,43 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasIndex("SpecialtyId");
 
                     b.ToTable("StandartEducationalPrograms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "1",
+                            SpecialtyId = 1,
+                            Year = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "2",
+                            SpecialtyId = 2,
+                            Year = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "3",
+                            SpecialtyId = 3,
+                            Year = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "4",
+                            SpecialtyId = 4,
+                            Year = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "5",
+                            SpecialtyId = 5,
+                            Year = 5
+                        });
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.Token.RefreshToken", b =>
@@ -545,13 +583,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a0efee39-3e07-4059-a9f7-c373fbaa7f1b",
+                            Id = "18d4496c-b925-4872-9579-d1e9c3f4c3e1",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         },
                         new
                         {
-                            Id = "93381d1f-54ed-477f-81d4-d9f2c15a3315",
+                            Id = "6c3d1549-1ebc-464d-bf3f-eb591eef712f",
                             Name = "University",
                             NormalizedName = "UNIVERSITY"
                         });
@@ -719,13 +757,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
-                            RoleId = "a0efee39-3e07-4059-a9f7-c373fbaa7f1b"
+                            UserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            RoleId = "18d4496c-b925-4872-9579-d1e9c3f4c3e1"
                         },
                         new
                         {
-                            UserId = "7e7be600-4247-4dfa-a8d6-e69ca2ef91d3",
-                            RoleId = "93381d1f-54ed-477f-81d4-d9f2c15a3315"
+                            UserId = "c516c67c-83d2-4507-9829-efc83105763e",
+                            RoleId = "6c3d1549-1ebc-464d-bf3f-eb591eef712f"
                         });
                 });
 
@@ -757,35 +795,35 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2a806e09-c4c9-4f6a-b52c-432b51b74b68",
+                            Id = "30a1f01d-c1b4-4252-8662-746626dec2eb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad246982-5b68-45ac-9906-713ff9196cbb",
+                            ConcurrencyStamp = "0f3c4e78-af6b-471c-9ba4-54e6e7b6ecbb",
                             Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MINISTRY@EMAIL.COM",
                             NormalizedUserName = "MINISTRY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGyYKLcaF43e/8qg+qExuh8mOQObNhnr10SuevVFdlWLg/QO2nj3Y2Bh2MH8p08E8Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBwnxd3nH7K/G+D+QvNLOKytRfCZR4q5MSzerIoI806Hmkky7T7W2RMnw8CHwBt3RA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "acdef111-b207-4abb-9ea7-75b580024592",
+                            SecurityStamp = "2731435e-7c72-4827-aa65-d53527b857dd",
                             TwoFactorEnabled = false,
                             UserName = "ministry@email.com"
                         },
                         new
                         {
-                            Id = "7e7be600-4247-4dfa-a8d6-e69ca2ef91d3",
+                            Id = "c516c67c-83d2-4507-9829-efc83105763e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "84fa27db-8697-4098-aa9d-2b6f0cd4d5ab",
+                            ConcurrencyStamp = "3bfdeb86-c1f1-4d3e-b90c-01de9f9144e8",
                             Email = "university@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "UNIVERSITY@EMAIL.COM",
                             NormalizedUserName = "UNIVERSITY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMuYEIcLvffb/Cn3NAG9rE6MJIVn+oY3hp+ufgVRZL0fUx9RqrSvVf3yyL3hKPoEMA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDa3hTC5Grd27agvSIUnm/RTeAJjMxzOjoa48e6tB8FdIxklMEOc3aLlRHdVr4XHUw==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "748c2514-e2f4-4f95-b2a6-e09ca32c453e",
+                            SecurityStamp = "c7e039c2-8861-42ee-b31c-3630981b5b34",
                             TwoFactorEnabled = false,
                             UserName = "university@email.com"
                         });

@@ -39,9 +39,9 @@ namespace HorseEggs.Core.Services
         public async Task<SpecialtyDto?> Get(int id)
         {
             if (id < 0) return null;
-            Specialty? competence = await _specialtyRepo.GetByID(id);
-            if (competence == null) return null;
-            return _mapper.Map<SpecialtyDto?>(competence);
+            Specialty? specialty = await _specialtyRepo.GetByID(id);
+            if (specialty == null) return null;
+            return _mapper.Map<SpecialtyDto?>(specialty);
         }
 
         public async Task<PaginationResponse<List<SpecialtyDto>, object>> GetAll(int page = 1, int pageSize = 10)

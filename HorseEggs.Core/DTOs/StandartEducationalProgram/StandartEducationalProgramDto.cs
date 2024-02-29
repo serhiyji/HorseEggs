@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace HorseEggs.Core.DTOs.StandartEducationalProgram
 {
-    internal class StandartEducationalProgramDto
+    public class StandartEducationalProgramDto
     {
+        public int Id { get; set; }
+        public int Year { get; set; }
+        public string Name { get; set; }
+        public int SpecialtyId { get; set; }
     }
 }
