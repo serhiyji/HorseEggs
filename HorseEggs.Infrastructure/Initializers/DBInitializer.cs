@@ -171,41 +171,36 @@ namespace HorseEggs.Infrastructure.Initializers
                 {
                     Id = 1,
                     Year = 1,
-                    Name = "1",
-                    Specialty = "121",
-                    SpecialtyName = "Інженерія програмного забезпечення",
+                    Name = "Інженерія програмного забезпечення",
+                    Code = "121",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 2,
                     Year = 2,
-                    Name = "2",
-                    Specialty = "122",
-                    SpecialtyName = "Комп’ютерні науки",
+                    Name = "Комп’ютерні науки",
+                    Code = "122",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 3,
                     Year = 3,
-                    Name = "3",
-                    Specialty = "123",
-                    SpecialtyName = "Комп’ютерна інженерія",
+                    Name = "Комп’ютерна інженерія",
+                    Code = "123",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 4,
                     Year = 4,
-                    Name = "4",
-                    Specialty = "124",
-                    SpecialtyName = "Системний аналіз",
+                    Name = "Системний аналіз",
+                    Code = "124",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 5,
                     Year = 5,
-                    Name = "5",
-                    Specialty = "125",
-                    SpecialtyName = "Кібербезпека",
+                    Name = "Кібербезпека",
+                    Code = "125",
                 }
             );
         }

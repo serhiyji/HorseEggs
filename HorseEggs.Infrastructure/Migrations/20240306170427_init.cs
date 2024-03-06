@@ -75,8 +75,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Specialty = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
-                    SpecialtyName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                    Code = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -487,8 +486,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "519b69d8-a6d9-4c3a-9070-b9d48dc9082d", null, "University", "UNIVERSITY" },
-                    { "b918b576-2192-456d-bfdf-6849318b3ec9", null, "Ministry", "MINISTRY" }
+                    { "09f3efd7-a2fd-4c35-9eed-77fe76cdf61d", null, "University", "UNIVERSITY" },
+                    { "63e4f8ea-1e26-4297-9871-f924fb78a97f", null, "Ministry", "MINISTRY" }
                 });
 
             migrationBuilder.InsertData(
@@ -496,20 +495,20 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "74590127-f688-4264-90da-b07466a3f2ca", 0, "de52d9fd-e7ff-421b-8ef9-7c1693382260", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAEBB6X2VfUACQOHE7XF4j6HGY452xUn6C6GXjlbAWd0gAzSGt9K7YHlqbi25c/sIRFA==", "+xx(xxx)xxx-xx-xx", true, "ef2f9734-f69b-434a-8257-9928aa7f4ebd", false, "ministry@email.com" },
-                    { "99f61281-6493-4ccd-a1db-636b1b479098", 0, "ca395dc9-1394-4f17-a8fb-0caf525c7f21", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEKiTL/+1tNXo6jouJ5Ky3b2E4gSPjycgqyLpZMNzKq6qq3/tTr3uKtEOAzvoSwGrNg==", "+xx(xxx)xxx-xx-xx", true, "787aad28-b456-4f5d-b018-106ca1216448", false, "university@email.com" }
+                    { "865c3e9d-029b-4e56-a395-9939e18b026a", 0, "559038b7-df9b-4e66-8065-6427c19cd791", "AppUser", "ministry@email.com", true, false, null, "MINISTRY@EMAIL.COM", "MINISTRY@EMAIL.COM", "AQAAAAIAAYagAAAAENPHmMYVDkO5EB5AzipfNJ+A1srGEXmmpFgF83thUEGiA3RIRJY2CcQV8O1nrDKZhg==", "+xx(xxx)xxx-xx-xx", true, "79966d26-fa6c-467e-a90f-809fd97e0e21", false, "ministry@email.com" },
+                    { "d6fbd2a9-01d4-4a4b-8dd9-fcba161d6f00", 0, "c70c4b20-383e-4d6d-a8d2-885b1c6697e8", "AppUser", "university@email.com", true, false, null, "UNIVERSITY@EMAIL.COM", "UNIVERSITY@EMAIL.COM", "AQAAAAIAAYagAAAAEF+wyn2sTTMDueVYhkExHDu9Ic+nUAaeJFbt4Mc4IBsdRwSM1U+WJ+5z1C3cR0KWEA==", "+xx(xxx)xxx-xx-xx", true, "9535d973-d661-4aa9-911e-1bc2d92ec6b4", false, "university@email.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "StandartEducationalPrograms",
-                columns: new[] { "Id", "Name", "Specialty", "SpecialtyName", "Year" },
+                columns: new[] { "Id", "Code", "Name", "Year" },
                 values: new object[,]
                 {
-                    { 1, "1", "121", "Інженерія програмного забезпечення", 1 },
-                    { 2, "2", "122", "Комп’ютерні науки", 2 },
-                    { 3, "3", "123", "Комп’ютерна інженерія", 3 },
-                    { 4, "4", "124", "Системний аналіз", 4 },
-                    { 5, "5", "125", "Кібербезпека", 5 }
+                    { 1, "121", "Інженерія програмного забезпечення", 1 },
+                    { 2, "122", "Комп’ютерні науки", 2 },
+                    { 3, "123", "Комп’ютерна інженерія", 3 },
+                    { 4, "124", "Системний аналіз", 4 },
+                    { 5, "125", "Кібербезпека", 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -517,8 +516,8 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "b918b576-2192-456d-bfdf-6849318b3ec9", "74590127-f688-4264-90da-b07466a3f2ca" },
-                    { "519b69d8-a6d9-4c3a-9070-b9d48dc9082d", "99f61281-6493-4ccd-a1db-636b1b479098" }
+                    { "63e4f8ea-1e26-4297-9871-f924fb78a97f", "865c3e9d-029b-4e56-a395-9939e18b026a" },
+                    { "09f3efd7-a2fd-4c35-9eed-77fe76cdf61d", "d6fbd2a9-01d4-4a4b-8dd9-fcba161d6f00" }
                 });
 
             migrationBuilder.InsertData(
@@ -526,11 +525,11 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AppUserId", "Code", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "74590127-f688-4264-90da-b07466a3f2ca", "ЗК1", "ЗК1", "ЗК1" },
-                    { 2, "74590127-f688-4264-90da-b07466a3f2ca", "ЗК2", "ЗК2", "ЗК2" },
-                    { 3, "74590127-f688-4264-90da-b07466a3f2ca", "ЗК3", "ЗК3", "ЗК3" },
-                    { 4, "74590127-f688-4264-90da-b07466a3f2ca", "ЗК4", "ЗК4", "ЗК4" },
-                    { 5, "74590127-f688-4264-90da-b07466a3f2ca", "ЗК5", "ЗК5", "ЗК5" }
+                    { 1, "865c3e9d-029b-4e56-a395-9939e18b026a", "ЗК1", "ЗК1", "ЗК1" },
+                    { 2, "865c3e9d-029b-4e56-a395-9939e18b026a", "ЗК2", "ЗК2", "ЗК2" },
+                    { 3, "865c3e9d-029b-4e56-a395-9939e18b026a", "ЗК3", "ЗК3", "ЗК3" },
+                    { 4, "865c3e9d-029b-4e56-a395-9939e18b026a", "ЗК4", "ЗК4", "ЗК4" },
+                    { 5, "865c3e9d-029b-4e56-a395-9939e18b026a", "ЗК5", "ЗК5", "ЗК5" }
                 });
 
             migrationBuilder.InsertData(
@@ -538,11 +537,11 @@ namespace HorseEggs.Infrastructure.Migrations
                 columns: new[] { "Id", "AppUserId", "Code", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "74590127-f688-4264-90da-b07466a3f2ca", "ПРН1", "ПРН1", "ПРН1" },
-                    { 2, "74590127-f688-4264-90da-b07466a3f2ca", "ПРН2", "ПРН2", "ПРН2" },
-                    { 3, "74590127-f688-4264-90da-b07466a3f2ca", "ПРН3", "ПРН3", "ПРН3" },
-                    { 4, "74590127-f688-4264-90da-b07466a3f2ca", "ПРН4", "ПРН4", "ПРН4" },
-                    { 5, "74590127-f688-4264-90da-b07466a3f2ca", "ПРН5", "ПРН5", "ПРН5" }
+                    { 1, "865c3e9d-029b-4e56-a395-9939e18b026a", "ПРН1", "ПРН1", "ПРН1" },
+                    { 2, "865c3e9d-029b-4e56-a395-9939e18b026a", "ПРН2", "ПРН2", "ПРН2" },
+                    { 3, "865c3e9d-029b-4e56-a395-9939e18b026a", "ПРН3", "ПРН3", "ПРН3" },
+                    { 4, "865c3e9d-029b-4e56-a395-9939e18b026a", "ПРН4", "ПРН4", "ПРН4" },
+                    { 5, "865c3e9d-029b-4e56-a395-9939e18b026a", "ПРН5", "ПРН5", "ПРН5" }
                 });
 
             migrationBuilder.CreateIndex(

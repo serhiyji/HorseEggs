@@ -16,9 +16,7 @@ namespace HorseEggs.Core.Entities
         [Required, MaxLength(256)]
         public string Name { get; set; }
         [Required, MaxLength(16)]
-        public string Specialty { get; set; }
-        [Required, MaxLength(256)]
-        public string SpecialtyName { get; set; }
+        public string Code { get; set; }
         public IEnumerable<Competences_SEP> Competences_SEPs { get; set; }
         public IEnumerable<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
         public IEnumerable<EducationalProgram> EducationalPrograms { get; set; }

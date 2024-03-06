@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HorseEggs.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240306082323_init")]
+    [Migration("20240306170427_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ЗК1",
                             Description = "ЗК1",
                             Name = "ЗК1"
@@ -70,7 +70,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ЗК2",
                             Description = "ЗК2",
                             Name = "ЗК2"
@@ -78,7 +78,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ЗК3",
                             Description = "ЗК3",
                             Name = "ЗК3"
@@ -86,7 +86,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ЗК4",
                             Description = "ЗК4",
                             Name = "ЗК4"
@@ -94,7 +94,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ЗК5",
                             Description = "ЗК5",
                             Name = "ЗК5"
@@ -318,7 +318,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ПРН1",
                             Description = "ПРН1",
                             Name = "ПРН1"
@@ -326,7 +326,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ПРН2",
                             Description = "ПРН2",
                             Name = "ПРН2"
@@ -334,7 +334,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ПРН3",
                             Description = "ПРН3",
                             Name = "ПРН3"
@@ -342,7 +342,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ПРН4",
                             Description = "ПРН4",
                             Name = "ПРН4"
@@ -350,7 +350,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            AppUserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             Code = "ПРН5",
                             Description = "ПРН5",
                             Name = "ПРН5"
@@ -411,17 +411,12 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Specialty")
+                    b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
-                    b.Property<string>("SpecialtyName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -437,41 +432,36 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "1",
-                            Specialty = "121",
-                            SpecialtyName = "Інженерія програмного забезпечення",
+                            Code = "121",
+                            Name = "Інженерія програмного забезпечення",
                             Year = 1
                         },
                         new
                         {
                             Id = 2,
-                            Name = "2",
-                            Specialty = "122",
-                            SpecialtyName = "Комп’ютерні науки",
+                            Code = "122",
+                            Name = "Комп’ютерні науки",
                             Year = 2
                         },
                         new
                         {
                             Id = 3,
-                            Name = "3",
-                            Specialty = "123",
-                            SpecialtyName = "Комп’ютерна інженерія",
+                            Code = "123",
+                            Name = "Комп’ютерна інженерія",
                             Year = 3
                         },
                         new
                         {
                             Id = 4,
-                            Name = "4",
-                            Specialty = "124",
-                            SpecialtyName = "Системний аналіз",
+                            Code = "124",
+                            Name = "Системний аналіз",
                             Year = 4
                         },
                         new
                         {
                             Id = 5,
-                            Name = "5",
-                            Specialty = "125",
-                            SpecialtyName = "Кібербезпека",
+                            Code = "125",
+                            Name = "Кібербезпека",
                             Year = 5
                         });
                 });
@@ -544,13 +534,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b918b576-2192-456d-bfdf-6849318b3ec9",
+                            Id = "63e4f8ea-1e26-4297-9871-f924fb78a97f",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         },
                         new
                         {
-                            Id = "519b69d8-a6d9-4c3a-9070-b9d48dc9082d",
+                            Id = "09f3efd7-a2fd-4c35-9eed-77fe76cdf61d",
                             Name = "University",
                             NormalizedName = "UNIVERSITY"
                         });
@@ -718,13 +708,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "74590127-f688-4264-90da-b07466a3f2ca",
-                            RoleId = "b918b576-2192-456d-bfdf-6849318b3ec9"
+                            UserId = "865c3e9d-029b-4e56-a395-9939e18b026a",
+                            RoleId = "63e4f8ea-1e26-4297-9871-f924fb78a97f"
                         },
                         new
                         {
-                            UserId = "99f61281-6493-4ccd-a1db-636b1b479098",
-                            RoleId = "519b69d8-a6d9-4c3a-9070-b9d48dc9082d"
+                            UserId = "d6fbd2a9-01d4-4a4b-8dd9-fcba161d6f00",
+                            RoleId = "09f3efd7-a2fd-4c35-9eed-77fe76cdf61d"
                         });
                 });
 
@@ -756,35 +746,35 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "74590127-f688-4264-90da-b07466a3f2ca",
+                            Id = "865c3e9d-029b-4e56-a395-9939e18b026a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "de52d9fd-e7ff-421b-8ef9-7c1693382260",
+                            ConcurrencyStamp = "559038b7-df9b-4e66-8065-6427c19cd791",
                             Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MINISTRY@EMAIL.COM",
                             NormalizedUserName = "MINISTRY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBB6X2VfUACQOHE7XF4j6HGY452xUn6C6GXjlbAWd0gAzSGt9K7YHlqbi25c/sIRFA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENPHmMYVDkO5EB5AzipfNJ+A1srGEXmmpFgF83thUEGiA3RIRJY2CcQV8O1nrDKZhg==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "ef2f9734-f69b-434a-8257-9928aa7f4ebd",
+                            SecurityStamp = "79966d26-fa6c-467e-a90f-809fd97e0e21",
                             TwoFactorEnabled = false,
                             UserName = "ministry@email.com"
                         },
                         new
                         {
-                            Id = "99f61281-6493-4ccd-a1db-636b1b479098",
+                            Id = "d6fbd2a9-01d4-4a4b-8dd9-fcba161d6f00",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ca395dc9-1394-4f17-a8fb-0caf525c7f21",
+                            ConcurrencyStamp = "c70c4b20-383e-4d6d-a8d2-885b1c6697e8",
                             Email = "university@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "UNIVERSITY@EMAIL.COM",
                             NormalizedUserName = "UNIVERSITY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKiTL/+1tNXo6jouJ5Ky3b2E4gSPjycgqyLpZMNzKq6qq3/tTr3uKtEOAzvoSwGrNg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF+wyn2sTTMDueVYhkExHDu9Ic+nUAaeJFbt4Mc4IBsdRwSM1U+WJ+5z1C3cR0KWEA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "787aad28-b456-4f5d-b018-106ca1216448",
+                            SecurityStamp = "9535d973-d661-4aa9-911e-1bc2d92ec6b4",
                             TwoFactorEnabled = false,
                             UserName = "university@email.com"
                         });

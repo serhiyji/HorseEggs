@@ -11,7 +11,6 @@ namespace HorseEggs.Core.DTOs.StandartEducationalProgram
         public int Id { get; set; }
         public int Year { get; set; }
         public string Name { get; set; }
-        public string Specialty { get; set; }
-        public string SpecialtyName { get; set; }
+        public string Code { get; set; }
     }
 }
