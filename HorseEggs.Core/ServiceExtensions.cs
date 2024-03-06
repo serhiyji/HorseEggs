@@ -1,6 +1,5 @@
 ﻿using HorseEggs.Core.AutoMapper.Competence;
 using HorseEggs.Core.AutoMapper.ProgramLearningOutcomes;
-using HorseEggs.Core.AutoMapper.Specialty;
 using HorseEggs.Core.AutoMapper.StandartEducationalProgram;
 using HorseEggs.Core.AutoMapper.User;
 using HorseEggs.Core.Interfaces;
@@ -23,7 +22,6 @@ namespace HorseEggs.Core
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<ICompetenceService, CompetenceService>();
             services.AddScoped<IProgramLearningOutcomesService, ProgramLearningOutcomesService>();
-            services.AddScoped<ISpecialtyService, SpecialtyService>();
             services.AddScoped<IStandartEducationalProgramService, StandartEducationalProgramService>();
         }
 
@@ -32,7 +30,6 @@ namespace HorseEggs.Core
             services.AddAutoMapper(typeof(AutoMapperUserProfile));
             services.AddAutoMapper(typeof(AutoMapperCompetenceProfile));
             services.AddAutoMapper(typeof(AutoMapperProgramLearningOutcomesProfile));
-            services.AddAutoMapper(typeof(AutoMapperSpecialtyProfile));
             services.AddAutoMapper(typeof(AutoMapperStandartEducationalProgramProfile));
         }
     }

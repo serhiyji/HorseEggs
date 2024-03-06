@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using HorseEggs.Core.DTOs.Specialty;
 using HorseEggs.Core.DTOs.StandartEducationalProgram;
 using HorseEggs.Core.Entities;
 using HorseEggs.Core.Interfaces;
@@ -17,7 +16,10 @@ namespace HorseEggs.Core.Services
     {
         private readonly IRepository<StandartEducationalProgram> _standartEducationalProgramRepo;
         private readonly IMapper _mapper;
-        public StandartEducationalProgramService(IRepository<StandartEducationalProgram> standartEducationalProgramRepo, IMapper mapper)
+        public StandartEducationalProgramService(
+                IRepository<StandartEducationalProgram> standartEducationalProgramRepo, 
+                IMapper mapper
+            )
         {
             _standartEducationalProgramRepo = standartEducationalProgramRepo;
             _mapper = mapper;
@@ -39,9 +41,9 @@ namespace HorseEggs.Core.Services
         public async Task<StandartEducationalProgramDto?> Get(int id)
         {
             if (id < 0) return null;
-            StandartEducationalProgram? competence = await _standartEducationalProgramRepo.GetByID(id);
-            if (competence == null) return null;
-            return _mapper.Map<StandartEducationalProgramDto?>(competence);
+            StandartEducationalProgram? standartEducationalProgram = await _standartEducationalProgramRepo.GetByID(id);
+            if (standartEducationalProgram == null) return null;
+            return _mapper.Map<StandartEducationalProgramDto>(standartEducationalProgram);
         }
 
         public async Task<PaginationResponse<List<StandartEducationalProgramDto>, object>> GetAll(int page = 1, int pageSize = 10)

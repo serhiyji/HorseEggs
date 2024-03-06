@@ -27,7 +27,6 @@ namespace HorseEggs.Infrastructure.Context
         public DbSet<EducationalProgram> EducationalPrograms { get; set; }
         public DbSet<ProgramLearningOutcomes> ProgramLearningOutcomes { get; set; }
         public DbSet<ProgramLearningOutcomes_SEP> ProgramLearningOutcomes_SEPs { get; set; }
-        public DbSet<Specialty> Specialties { get; set; }
         public DbSet<StandartEducationalProgram> StandartEducationalPrograms { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
@@ -49,11 +48,6 @@ namespace HorseEggs.Infrastructure.Context
                 .HasMany(user => user.ProgramLearningOutcomes)
                 .WithOne(program_learning_outcomes => program_learning_outcomes.AppUser)
                 .HasForeignKey(program_learning_outcomes => program_learning_outcomes.AppUserId).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<StandartEducationalProgram>()
-                .HasOne(standart_educational_program => standart_educational_program.Specialty)
-                .WithMany(specialty => specialty.StandartEducationalPrograms)
-                .HasForeignKey(standart_educational_program => standart_educational_program.SpecialtyId);
 
             modelBuilder.Entity<Competences_SEP>()
                 .HasOne(competences_sep => competences_sep.StandartEducationalProgram)
@@ -144,7 +138,6 @@ namespace HorseEggs.Infrastructure.Context
             modelBuilder.SeedUniversity();
             modelBuilder.SeedCompetence();
             modelBuilder.SeedProgramLearningOutcomes();
-            modelBuilder.SeedSpecialty();
             modelBuilder.SeedStandartEducationalProgram();
         }
     }

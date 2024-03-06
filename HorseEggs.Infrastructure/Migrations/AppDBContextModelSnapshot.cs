@@ -59,7 +59,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ЗК1",
                             Description = "ЗК1",
                             Name = "ЗК1"
@@ -67,7 +67,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ЗК2",
                             Description = "ЗК2",
                             Name = "ЗК2"
@@ -75,7 +75,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ЗК3",
                             Description = "ЗК3",
                             Name = "ЗК3"
@@ -83,7 +83,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ЗК4",
                             Description = "ЗК4",
                             Name = "ЗК4"
@@ -91,7 +91,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ЗК5",
                             Description = "ЗК5",
                             Name = "ЗК5"
@@ -154,11 +154,13 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -258,7 +260,8 @@ namespace HorseEggs.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("StandartEducationalProgramId")
                         .HasColumnType("int");
@@ -312,7 +315,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ПРН1",
                             Description = "ПРН1",
                             Name = "ПРН1"
@@ -320,7 +323,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ПРН2",
                             Description = "ПРН2",
                             Name = "ПРН2"
@@ -328,7 +331,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ПРН3",
                             Description = "ПРН3",
                             Name = "ПРН3"
@@ -336,7 +339,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ПРН4",
                             Description = "ПРН4",
                             Name = "ПРН4"
@@ -344,7 +347,7 @@ namespace HorseEggs.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            AppUserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            AppUserId = "74590127-f688-4264-90da-b07466a3f2ca",
                             Code = "ПРН5",
                             Description = "ПРН5",
                             Name = "ПРН5"
@@ -397,61 +400,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.ToTable("ProgramLearningOutcomes_SEPs");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.Specialty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Specialties");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "121",
-                            Name = "Інженерія програмного забезпечення"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "122",
-                            Name = "Комп’ютерні науки"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "123",
-                            Name = "Комп’ютерна інженерія"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "124",
-                            Name = "Системний аналіз"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "125",
-                            Name = "Кібербезпека"
-                        });
-                });
-
             modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>
                 {
                     b.Property<int>("Id")
@@ -465,15 +413,20 @@ namespace HorseEggs.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("SpecialtyId")
-                        .HasColumnType("int");
+                    b.Property<string>("Specialty")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("SpecialtyName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SpecialtyId");
 
                     b.ToTable("StandartEducationalPrograms");
 
@@ -482,35 +435,40 @@ namespace HorseEggs.Infrastructure.Migrations
                         {
                             Id = 1,
                             Name = "1",
-                            SpecialtyId = 1,
+                            Specialty = "121",
+                            SpecialtyName = "Інженерія програмного забезпечення",
                             Year = 1
                         },
                         new
                         {
                             Id = 2,
                             Name = "2",
-                            SpecialtyId = 2,
+                            Specialty = "122",
+                            SpecialtyName = "Комп’ютерні науки",
                             Year = 2
                         },
                         new
                         {
                             Id = 3,
                             Name = "3",
-                            SpecialtyId = 3,
+                            Specialty = "123",
+                            SpecialtyName = "Комп’ютерна інженерія",
                             Year = 3
                         },
                         new
                         {
                             Id = 4,
                             Name = "4",
-                            SpecialtyId = 4,
+                            Specialty = "124",
+                            SpecialtyName = "Системний аналіз",
                             Year = 4
                         },
                         new
                         {
                             Id = 5,
                             Name = "5",
-                            SpecialtyId = 5,
+                            Specialty = "125",
+                            SpecialtyName = "Кібербезпека",
                             Year = 5
                         });
                 });
@@ -583,13 +541,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "18d4496c-b925-4872-9579-d1e9c3f4c3e1",
+                            Id = "b918b576-2192-456d-bfdf-6849318b3ec9",
                             Name = "Ministry",
                             NormalizedName = "MINISTRY"
                         },
                         new
                         {
-                            Id = "6c3d1549-1ebc-464d-bf3f-eb591eef712f",
+                            Id = "519b69d8-a6d9-4c3a-9070-b9d48dc9082d",
                             Name = "University",
                             NormalizedName = "UNIVERSITY"
                         });
@@ -757,13 +715,13 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "30a1f01d-c1b4-4252-8662-746626dec2eb",
-                            RoleId = "18d4496c-b925-4872-9579-d1e9c3f4c3e1"
+                            UserId = "74590127-f688-4264-90da-b07466a3f2ca",
+                            RoleId = "b918b576-2192-456d-bfdf-6849318b3ec9"
                         },
                         new
                         {
-                            UserId = "c516c67c-83d2-4507-9829-efc83105763e",
-                            RoleId = "6c3d1549-1ebc-464d-bf3f-eb591eef712f"
+                            UserId = "99f61281-6493-4ccd-a1db-636b1b479098",
+                            RoleId = "519b69d8-a6d9-4c3a-9070-b9d48dc9082d"
                         });
                 });
 
@@ -795,35 +753,35 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "30a1f01d-c1b4-4252-8662-746626dec2eb",
+                            Id = "74590127-f688-4264-90da-b07466a3f2ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f3c4e78-af6b-471c-9ba4-54e6e7b6ecbb",
+                            ConcurrencyStamp = "de52d9fd-e7ff-421b-8ef9-7c1693382260",
                             Email = "ministry@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MINISTRY@EMAIL.COM",
                             NormalizedUserName = "MINISTRY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBwnxd3nH7K/G+D+QvNLOKytRfCZR4q5MSzerIoI806Hmkky7T7W2RMnw8CHwBt3RA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBB6X2VfUACQOHE7XF4j6HGY452xUn6C6GXjlbAWd0gAzSGt9K7YHlqbi25c/sIRFA==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "2731435e-7c72-4827-aa65-d53527b857dd",
+                            SecurityStamp = "ef2f9734-f69b-434a-8257-9928aa7f4ebd",
                             TwoFactorEnabled = false,
                             UserName = "ministry@email.com"
                         },
                         new
                         {
-                            Id = "c516c67c-83d2-4507-9829-efc83105763e",
+                            Id = "99f61281-6493-4ccd-a1db-636b1b479098",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3bfdeb86-c1f1-4d3e-b90c-01de9f9144e8",
+                            ConcurrencyStamp = "ca395dc9-1394-4f17-a8fb-0caf525c7f21",
                             Email = "university@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "UNIVERSITY@EMAIL.COM",
                             NormalizedUserName = "UNIVERSITY@EMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDa3hTC5Grd27agvSIUnm/RTeAJjMxzOjoa48e6tB8FdIxklMEOc3aLlRHdVr4XHUw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKiTL/+1tNXo6jouJ5Ky3b2E4gSPjycgqyLpZMNzKq6qq3/tTr3uKtEOAzvoSwGrNg==",
                             PhoneNumber = "+xx(xxx)xxx-xx-xx",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c7e039c2-8861-42ee-b31c-3630981b5b34",
+                            SecurityStamp = "787aad28-b456-4f5d-b018-106ca1216448",
                             TwoFactorEnabled = false,
                             UserName = "university@email.com"
                         });
@@ -1019,17 +977,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("StandartEducationalProgram");
                 });
 
-            modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>
-                {
-                    b.HasOne("HorseEggs.Core.Entities.Specialty", "Specialty")
-                        .WithMany("StandartEducationalPrograms")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Specialty");
-                });
-
             modelBuilder.Entity("HorseEggs.Core.Entities.Token.RefreshToken", b =>
                 {
                     b.HasOne("HorseEggs.Core.Entities.AppUser", "User")
@@ -1130,11 +1077,6 @@ namespace HorseEggs.Infrastructure.Migrations
                     b.Navigation("ProgramLearningOutcomes_EPs");
 
                     b.Navigation("ProgramLearningOutcomes_SEPs");
-                });
-
-            modelBuilder.Entity("HorseEggs.Core.Entities.Specialty", b =>
-                {
-                    b.Navigation("StandartEducationalPrograms");
                 });
 
             modelBuilder.Entity("HorseEggs.Core.Entities.StandartEducationalProgram", b =>

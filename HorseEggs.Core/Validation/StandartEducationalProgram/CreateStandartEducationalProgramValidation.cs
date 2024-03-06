@@ -14,7 +14,8 @@ namespace HorseEggs.Core.Validation.StandartEducationalProgram
         {
             RuleFor(s => s.Year).NotEmpty();
             RuleFor(s => s.Name).NotEmpty().MinimumLength(1).MaximumLength(256);
-            RuleFor(s => s.SpecialtyId).NotEmpty();
+            RuleFor(s => s.Specialty).NotEmpty().MinimumLength(1).MaximumLength(16);
+            RuleFor(s => s.SpecialtyName).NotEmpty().MinimumLength(1).MaximumLength(256);
         }
     }
 }

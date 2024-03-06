@@ -164,42 +164,6 @@ namespace HorseEggs.Infrastructure.Initializers
             );
         }
 
-        public static void SeedSpecialty(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Specialty>().HasData(
-                new Specialty()
-                {
-                    Id = 1,
-                    Code = "121",
-                    Name = "Інженерія програмного забезпечення",
-                },
-                new Specialty()
-                {
-                    Id = 2,
-                    Code = "122",
-                    Name = "Комп’ютерні науки",
-                },
-                new Specialty()
-                {
-                    Id = 3,
-                    Code = "123",
-                    Name = "Комп’ютерна інженерія",
-                },
-                new Specialty()
-                {
-                    Id = 4,
-                    Code = "124",
-                    Name = "Системний аналіз",
-                },
-                new Specialty()
-                {
-                    Id = 5,
-                    Code = "125",
-                    Name = "Кібербезпека",
-                }
-            );
-        }
-
         public static void SeedStandartEducationalProgram(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StandartEducationalProgram>().HasData(
@@ -208,35 +172,40 @@ namespace HorseEggs.Infrastructure.Initializers
                     Id = 1,
                     Year = 1,
                     Name = "1",
-                    SpecialtyId = 1,
+                    Specialty = "121",
+                    SpecialtyName = "Інженерія програмного забезпечення",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 2,
                     Year = 2,
                     Name = "2",
-                    SpecialtyId = 2,
+                    Specialty = "122",
+                    SpecialtyName = "Комп’ютерні науки",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 3,
                     Year = 3,
                     Name = "3",
-                    SpecialtyId = 3,
+                    Specialty = "123",
+                    SpecialtyName = "Комп’ютерна інженерія",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 4,
                     Year = 4,
                     Name = "4",
-                    SpecialtyId = 4,
+                    Specialty = "124",
+                    SpecialtyName = "Системний аналіз",
                 },
                 new StandartEducationalProgram()
                 {
                     Id = 5,
                     Year = 5,
                     Name = "5",
-                    SpecialtyId = 5,
+                    Specialty = "125",
+                    SpecialtyName = "Кібербезпека",
                 }
             );
         }
